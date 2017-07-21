@@ -31,7 +31,9 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
-             DisplayPopUpMessage("xxxxxxxxxx", "yyyyyyyy");
+            //TODO get from file on disc
+
+            DisplayPopUpMessage("xxxxxxxxxx", "yyyyyyyy");
         }
 
         private void DisplayPopUpMessage(string title, string text)
