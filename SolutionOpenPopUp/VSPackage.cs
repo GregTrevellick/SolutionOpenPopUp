@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
 
@@ -11,12 +10,10 @@ namespace SolutionOpenPopUp
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration(productName: "#110", productDetails: "#112", productId: Vsix.Version, IconResourceID = 400)]
-    [Guid("5e45aa4e-1a24-4edf-b10a-228b63448f70")]
-    //153788b5-1eff-4709-b5f3-8bb0a92c0799
+    [Guid("5e45aa4e-1a24-4edf-b10a-228b63448f70")]//153788b5-1eff-4709-b5f3-8bb0a92c0799
     public sealed class VSPackage : Package
     {
         private DTE dte;
-        //private const string solutionItemsFolder = "{5B9E7010-9C34-4FA3-AED6-AD26E2C6C9CB}";
 
         public VSPackage()
         {
