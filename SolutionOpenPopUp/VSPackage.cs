@@ -1,19 +1,19 @@
 ﻿using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using SolutionOpenPopUp.Options;
 using System;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Runtime.InteropServices;
-using SolutionOpenPopUp.Options;
 
 namespace SolutionOpenPopUp
 {
-   // [Guid(PackageGuids.guidOpenInAppPackageString)]
     [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration(productName: "#110", productDetails: "#112", productId: Vsix.Version, IconResourceID = 400)]
+    //[Guid(PackageGuids.guidOpenInAppPackageString)]
     [Guid("5e45aa4e-1a24-4edf-b10a-228b63448f70")]//153788b5-1eff-4709-b5f3-8bb0a92c0799
     public sealed class VSPackage : Package
     {
@@ -42,7 +42,9 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(popUpMessage))
             {
-                DisplayPopUpMessage("a.n.title", popUpMessage);
+                var slnPath = dte.Solution.FullName;
+                var slnFolder = Path.GetDirectoryName(slnPath);
+                DisplayPopUpMessage("a.n.title", popUpMessage, slnFolder);
             }
         }
 

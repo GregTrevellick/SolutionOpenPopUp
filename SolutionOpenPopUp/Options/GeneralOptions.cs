@@ -1,14 +1,14 @@
 ﻿using Microsoft.VisualStudio.Shell;
-using System.ComponentModel;
 using SolutionOpenPopUp.Helpers;
+using System.ComponentModel;
 
 namespace SolutionOpenPopUp.Options
 {
     public class GeneralOptions : DialogPage
     {
         [Category("General")]
-        [DisplayName("A N Label 2")]
-        [Description("Description self")]
+        [DisplayName("Personal pop-up text file")]
+        [Description("The name of the file on your PC that will appear in pop-up. Typically not a file under source control.")]
         public string PopUpTextFileSelf
         {
             get
@@ -29,27 +29,27 @@ namespace SolutionOpenPopUp.Options
         }
 
 
-        [Category("General")]
-        [DisplayName("A N Label 1")]
-        [Description("Description team")]
-        public string PopUpTextFileTeam
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(popUpTextFileTeam))
-                {
-                    return @"..\ADefaultPopUpTextFile_TEAM_FileName.txt";
-                }
-                else
-                {
-                    return popUpTextFileTeam;
-                }
-            }
-            set
-            {
-                popUpTextFileTeam = value;
-            }
-        }
+        //[Category("General")]
+        //[DisplayName("Shared pop-up text file")]
+        //[Description("The name of file that will appear in pop-up for anyone who opens . Typically not a file under source control.  on your PC that is part of the source control 1")]
+        //public string PopUpTextFileTeam
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(popUpTextFileTeam))
+        //        {
+        //            return @"..\ADefaultPopUpTextFile_TEAM_FileName.txt";
+        //        }
+        //        else
+        //        {
+        //            return popUpTextFileTeam;
+        //        }
+        //    }
+        //    set
+        //    {
+        //        popUpTextFileTeam = value;
+        //    }
+        //}
 
         public override void LoadSettingsFromStorage()
         {
@@ -57,13 +57,13 @@ namespace SolutionOpenPopUp.Options
         }
 
         private string popUpTextFileSelf;
-        private string popUpTextFileTeam;
+        //private string popUpTextFileTeam;
         private string previousPopUpTextFile { get; set; }
 
         protected override void OnApply(PageApplyEventArgs e)
         {
             ApplyOptions(e, PopUpTextFileSelf);
-            ApplyOptions(e, PopUpTextFileTeam);
+            //ApplyOptions(e, PopUpTextFileTeam);
 
             base.OnApply(e);
         }
@@ -100,7 +100,7 @@ namespace SolutionOpenPopUp.Options
 
         public void PersistVSToolOptions(string fileName)
         {
-            VSPackage.Options.PopUpTextFileTeam = fileName;
+            VSPackage.Options.PopUpTextFileSelf = fileName;
             VSPackage.Options.SaveSettingsToStorage();
         }
     }
