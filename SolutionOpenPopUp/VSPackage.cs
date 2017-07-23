@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
+using SolutionOpenPopUp.Options;
 
 namespace SolutionOpenPopUp
 {
@@ -14,6 +15,7 @@ namespace SolutionOpenPopUp
     public sealed class VSPackage : Package
     {
         private DTE dte;
+        public static GeneralOptions Options { get; private set; }
 
         public VSPackage()
         {
@@ -41,6 +43,7 @@ namespace SolutionOpenPopUp
             IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
             Guid clsid = Guid.Empty;
             int result;
+
             uiShell.ShowMessageBox(
                 0,
                 ref clsid,
