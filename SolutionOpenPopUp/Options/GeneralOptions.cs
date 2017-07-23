@@ -32,10 +32,10 @@ namespace SolutionOpenPopUp.Options
             //    ActualPathToExe = GeneralOptionsHelper.GetActualPathToExe(keyToExecutableEnum);
             //}
 
-            previousActualPathToExe = ActualPathToExe;
+            //previousActualPathToExe = ActualPathToExe;
         }
 
-        private string previousActualPathToExe { get; set; }
+        //private string previousActualPathToExe { get; set; }
 
         //protected override void OnApply(PageApplyEventArgs e)
         //{
