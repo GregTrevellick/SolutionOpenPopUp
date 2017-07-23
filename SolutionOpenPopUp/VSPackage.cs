@@ -3,11 +3,14 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
+using System.IO;
 using System.Runtime.InteropServices;
 using SolutionOpenPopUp.Options;
 
 namespace SolutionOpenPopUp
 {
+   // [Guid(PackageGuids.guidOpenInAppPackageString)]
+    [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration(productName: "#110", productDetails: "#112", productId: Vsix.Version, IconResourceID = 400)]
@@ -33,9 +36,26 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
-            //TODO get from file on disc
+            var fileName = Options.PopUpTextFileSelf;
 
-            DisplayPopUpMessage("xxxxxxxxxx", "yyyyyyyy");
+            var popUpMessage = GetPopUpMessage(fileName);
+
+            if (!string.IsNullOrEmpty(popUpMessage))
+            {
+                DisplayPopUpMessage("a.n.title", popUpMessage);
+            }
+        }
+
+        private string GetPopUpMessage(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                return File.ReadAllText(fileName);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void DisplayPopUpMessage(string title, string text)

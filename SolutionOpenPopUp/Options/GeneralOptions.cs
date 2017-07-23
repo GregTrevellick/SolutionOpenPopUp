@@ -1,77 +1,106 @@
 ﻿using Microsoft.VisualStudio.Shell;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
-//using Microsoft.VisualStudio.Shell;
-////using System.Collections.Generic;
-//using System.ComponentModel;
-//sing System.Windows.Forms;
-
+using SolutionOpenPopUp.Helpers;
 
 namespace SolutionOpenPopUp.Options
 {
-    public class GeneralOptions : DialogPage//, IGeneralOptionsBase
+    public class GeneralOptions : DialogPage
     {
+        [Category("General")]
+        [DisplayName("A N Label 2")]
+        [Description("Description self")]
+        public string PopUpTextFileSelf
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(popUpTextFileSelf))
+                {
+                    return @"c:\temp\ADefaultPopUpTextFile_SELF_FileName.txt";
+                }
+                else
+                {
+                    return popUpTextFileSelf;
+                }
+            }
+            set
+            {
+                popUpTextFileSelf = value;
+            }
+        }
 
-       // [Category(CommonConstants.CategorySubLevel)]
-    //    [DisplayName(CommonActualPathToExeOptionLabel)]
-     //   [Description(CommonConstants.ActualPathToExeOptionDetailedDescription)]
-        public string ActualPathToExe { get; set; }
+
+        [Category("General")]
+        [DisplayName("A N Label 1")]
+        [Description("Description team")]
+        public string PopUpTextFileTeam
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(popUpTextFileTeam))
+                {
+                    return @"..\ADefaultPopUpTextFile_TEAM_FileName.txt";
+                }
+                else
+                {
+                    return popUpTextFileTeam;
+                }
+            }
+            set
+            {
+                popUpTextFileTeam = value;
+            }
+        }
 
         public override void LoadSettingsFromStorage()
         {
             base.LoadSettingsFromStorage();
-
-            //if (string.IsNullOrEmpty(TypicalFileExtensions))
-            //{
-            //    TypicalFileExtensions = AllAppsHelper.GetDefaultTypicalFileExtensionsAsCsv(defaultTypicalFileExtensions);
-            //}
-
-            //if (string.IsNullOrEmpty(ActualPathToExe))
-            //{
-            //    ActualPathToExe = GeneralOptionsHelper.GetActualPathToExe(keyToExecutableEnum);
-            //}
-
-            //previousActualPathToExe = ActualPathToExe;
         }
 
-        //private string previousActualPathToExe { get; set; }
+        private string popUpTextFileSelf;
+        private string popUpTextFileTeam;
+        private string previousPopUpTextFile { get; set; }
 
-        //protected override void OnApply(PageApplyEventArgs e)
-        //{
-        //    var actualPathToExeChanged = false;
+        protected override void OnApply(PageApplyEventArgs e)
+        {
+            ApplyOptions(e, PopUpTextFileSelf);
+            ApplyOptions(e, PopUpTextFileTeam);
 
-        //    if (ActualPathToExe != previousActualPathToExe)
-        //    {
-        //        actualPathToExeChanged = true;
-        //        previousActualPathToExe = ActualPathToExe; 
-        //    }
+            base.OnApply(e);
+        }
 
-        //    //if (actualPathToExeChanged)
-        //    {
-        //        if (!ArtefactsHelper.DoesActualPathToExeExist(ActualPathToExe))
-        //        {
-        //            e.ApplyBehavior = ApplyKind.Cancel;
+        private void ApplyOptions(PageApplyEventArgs e, string filename)
+        {
+            var previousFileChanged = false;
 
-        //            var caption = new ConstantsForAppCommon().Caption;
+            if (filename != previousPopUpTextFile)
+            {
+                previousFileChanged = true;
+                previousPopUpTextFile = filename;
+            }
 
-        //            var filePrompterHelper = new FilePrompterHelper(caption, keyToExecutableEnum.Description());
+            if (previousFileChanged)
+            {
+                if (!ArtefactsHelper.DoesFileExist(filename))
+                {
+                    e.ApplyBehavior = ApplyKind.Cancel;
 
-        //            var persistOptionsDto = filePrompterHelper.PromptForActualExeFile(ActualPathToExe);
+                    var caption = Vsix.Name + " " + Vsix.Version;
 
-        //            if (persistOptionsDto.Persist)
-        //            {
-        //                PersistVSToolOptions(persistOptionsDto.ValueToPersist);
-        //            }
-        //        }
-        //    }
+                    var filePrompterHelper = new FilePrompterHelper(caption, "something.exe");
 
-        //    base.OnApply(e);
-        //}
+                    var persistOptionsDto = filePrompterHelper.PromptForActualExeFile(filename);
+
+                    if (persistOptionsDto.Persist)
+                    {
+                        PersistVSToolOptions(persistOptionsDto.ValueToPersist);
+                    }
+                }
+            }
+        }
 
         public void PersistVSToolOptions(string fileName)
         {
-            VSPackage.Options.ActualPathToExe = fileName;
+            VSPackage.Options.PopUpTextFileTeam = fileName;
             VSPackage.Options.SaveSettingsToStorage();
         }
     }

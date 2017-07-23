@@ -76,6 +76,12 @@
     <VsixCompressTargets Condition=" '$(VsixCompressTargets)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\VsixCompress.1.0.1\tools\vsix-compress.targets ))</VsixCompressTargets>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ArtefactsHelper.cs" />
+    <Compile Include="Helpers\BrowseFileHelper.cs" />
+    <Compile Include="Helpers\CommonConstants.cs" />
+    <Compile Include="Helpers\Dtos\FileBrowseOutcomeDto.cs" />
+    <Compile Include="Helpers\Dtos\PersistOptionsDto.cs" />
+    <Compile Include="Helpers\FilePrompterHelper.cs" />
     <Compile Include="Options\GeneralOptions.cs">
       <SubType>Component</SubType>
     </Compile>
