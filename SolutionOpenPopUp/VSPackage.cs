@@ -36,16 +36,15 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
-            var fileName = Options.PopUpTextFileSelf;
-
+            //var fileName = Options.PopUpTextFileSelf;
+            
+            var slnPath = dte.Solution.FullName;
+            var slnFolder = Path.GetDirectoryName(slnPath);
+            var fileName = Path.Combine(slnFolder, "PopUpTextFileSelfTeam.txt");
             var popUpMessage = GetPopUpMessage(fileName);
 
-            if (!string.IsNullOrEmpty(popUpMessage))
-            {
-                var slnPath = dte.Solution.FullName;
-                var slnFolder = Path.GetDirectoryName(slnPath);
-                DisplayPopUpMessage("a.n.title", popUpMessage, slnFolder);
-            }
+            DisplayPopUpMessage("a.n.title", popUpMessage);
+
         }
 
         private string GetPopUpMessage(string fileName)

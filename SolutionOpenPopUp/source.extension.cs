@@ -11,7 +11,7 @@ namespace SolutionOpenPopUp
         public const string Name = "SolutionOpenPopUp";
         public const string Description = @"SolutionOpenPopUp descriptionSolutionOpenPopUp";
         public const string Language = "en-US";
-        public const string Version = "1.0.3";
+        public const string Version = "1.0.4";
         public const string Author = "Greg Trevellick";
         public const string Tags = "";
     }
