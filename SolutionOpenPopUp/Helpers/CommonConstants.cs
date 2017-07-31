@@ -6,12 +6,12 @@ namespace SolutionOpenPopUp.Helpers
     {
         public static string InformUserMissingFile(string missingFileName)
         {
-            return $"The executable file for {missingFileName} does not exist.";
+            return $"The file {missingFileName} does not exist.";
         }
 
-        public static string PromptForActualExeFile(string dodgyPathToFile)
+        public static string PromptForActualExeFile(string missingFileName)
         {
-            return InformUserMissingFile(dodgyPathToFile)
+            return InformUserMissingFile(missingFileName)
                 + Environment.NewLine + Environment.NewLine
                 + "Do you want to browse the for the file ?"
                 + Environment.NewLine + Environment.NewLine

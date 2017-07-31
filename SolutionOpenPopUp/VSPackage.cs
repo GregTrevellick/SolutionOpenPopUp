@@ -36,14 +36,13 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
-            var popUpTextFileFullPathSelf = Options.PopUpTextFileFullPathSelf;
-            var popUpTextFileNameTeam = Options.PopUpTextFileNameTeam;
-
             var solutionPath = dte.Solution.FullName;
             var solutionFolder = Path.GetDirectoryName(solutionPath);
-            var popUpFileSelf = popUpTextFileFullPathSelf;
+            var popUpTextFileNameTeam = GetPopUpTextFileNameTeam();
             var popUpFileTeam = Path.Combine(solutionFolder, popUpTextFileNameTeam);
-            var popUpMessage = GetPopUpMessage(popUpFileSelf, popUpFileTeam);
+
+            var popUpTextFileFullPathSelf = GetPopUpTextFileFullPathSelf();
+            var popUpMessage = GetPopUpMessage(popUpTextFileFullPathSelf, popUpFileTeam);
             var popUpTitle = Vsix.Name + " " + Vsix.Version;
 
             DisplayPopUpMessage(popUpTitle, popUpMessage);
@@ -64,28 +63,43 @@ namespace SolutionOpenPopUp
             }
             else
             {
-                return null;
+                return string.Empty;
             }
         }
 
         private void DisplayPopUpMessage(string title, string text)
         {
-            IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
-            Guid clsid = Guid.Empty;
-            int result;
+            if (!string.IsNullOrEmpty(text))
+            {
+                IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
+                Guid clsid = Guid.Empty;
+                int result;
 
-            uiShell.ShowMessageBox(
-                0,
-                ref clsid,
-                title.ToUpper(),
-                text,
-                string.Empty,
-                0,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
-                OLEMSGICON.OLEMSGICON_INFO,
-                0,
-                out result);
+                uiShell.ShowMessageBox(
+                    0,
+                    ref clsid,
+                    title.ToUpper(),
+                    text,
+                    string.Empty,
+                    0,
+                    OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
+                    OLEMSGICON.OLEMSGICON_INFO,
+                    0,
+                    out result);
+            }
+        }
+
+        private string GetPopUpTextFileFullPathSelf()
+        {
+            var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
+            return generalOptions.PopUpTextFileFullPathSelf;
+        }
+
+        private string GetPopUpTextFileNameTeam()
+        {
+            var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
+            return generalOptions.PopUpTextFileNameTeam;
         }
     }
 }

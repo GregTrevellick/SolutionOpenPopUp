@@ -30,24 +30,10 @@ namespace SolutionOpenPopUp.Options
 
         [Category("General")]
         [DisplayName("Team pop-up text file")]
-        [Description("The name of file that will appear in pop-up for anyone who opens this sln. This would typically be a file under source control.")]
+        [Description("The fixed name of file. located in the root of your solution folder, that will appear in pop-up for anyone who opens this sln. You should typically place this file under source control.")]
         public string PopUpTextFileNameTeam
         {
-            get
-            {
-                if (string.IsNullOrEmpty(popUpTextFileNameTeam))
-                {
-                    return @"..\SolutionOpenPopUp.txt";
-                }
-                else
-                {
-                    return popUpTextFileNameTeam;
-                }
-            }
-            set
-            {
-                popUpTextFileNameTeam = value;
-            }
+            get { return @"SolutionOpenPopUp.txt"; }
         }
 
         public override void LoadSettingsFromStorage()
@@ -56,31 +42,29 @@ namespace SolutionOpenPopUp.Options
         }
 
         private string popUpTextFileFullPathSelf;
-        private string popUpTextFileNameTeam;
 
         private string previousPopUpTextFile { get; set; }
 
         protected override void OnApply(PageApplyEventArgs e)
         {
-            ApplyOptions(e, PopUpTextFileFullPathSelf, true);
-            ApplyOptions(e, PopUpTextFileNameTeam, false);
+            ApplyOptions(e, PopUpTextFileFullPathSelf);
 
             base.OnApply(e);
         }
 
-        private void ApplyOptions(PageApplyEventArgs e, string filename, bool self)
+        private void ApplyOptions(PageApplyEventArgs e, string selfFilename)
         {
             var previousFileChanged = false;
 
-            if (filename != previousPopUpTextFile)
+            if (!string.IsNullOrEmpty(selfFilename))
             {
                 previousFileChanged = true;
-                previousPopUpTextFile = filename;
+                previousPopUpTextFile = selfFilename;
             }
 
             if (previousFileChanged)
             {
-                if (!ArtefactsHelper.DoesFileExist(filename))
+                if (!ArtefactsHelper.DoesFileExist(selfFilename))
                 {
                     e.ApplyBehavior = ApplyKind.Cancel;
 
@@ -88,18 +72,11 @@ namespace SolutionOpenPopUp.Options
 
                     var filePrompterHelper = new FilePrompterHelper(caption, "something.exe");
 
-                    var persistOptionsDto = filePrompterHelper.PromptForActualExeFile(filename);
+                    var persistOptionsDto = filePrompterHelper.PromptForActualExeFile(selfFilename);
 
                     if (persistOptionsDto.Persist)
                     {
-                        if (self)
-                        {
-                            PersistPopUpTextFileFullPathSelf(persistOptionsDto.ValueToPersist);
-                        }
-                        else
-                        {
-                            PersistPopUpTextFileNameTeam(persistOptionsDto.ValueToPersist);
-                        }
+                        PersistPopUpTextFileFullPathSelf(persistOptionsDto.ValueToPersist);
                     }
                 }
             }
@@ -108,12 +85,6 @@ namespace SolutionOpenPopUp.Options
         public void PersistPopUpTextFileFullPathSelf(string fileName)
         {
             VSPackage.Options.PopUpTextFileFullPathSelf = fileName;
-            VSPackage.Options.SaveSettingsToStorage();
-        }
-
-        public void PersistPopUpTextFileNameTeam(string fileName)
-        {
-            VSPackage.Options.PopUpTextFileNameTeam = fileName;
             VSPackage.Options.SaveSettingsToStorage();
         }
     }
