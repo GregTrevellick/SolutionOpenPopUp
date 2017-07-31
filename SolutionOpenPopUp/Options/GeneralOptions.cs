@@ -9,65 +9,66 @@ namespace SolutionOpenPopUp.Options
         [Category("General")]
         [DisplayName("Personal pop-up text file")]
         [Description("The name of the file on your PC that will appear in pop-up. This would typically not be a file under source control.")]
-        public string PopUpTextFileSelf
+        public string PopUpTextFileFullPathSelf
         {
             get
             {
-                if (string.IsNullOrEmpty(popUpTextFileSelf))
+                if (string.IsNullOrEmpty(popUpTextFileFullPathSelf))
                 {
-                    return @"c:\temp\ADefaultPopUpTextFile_SELF_FileName.txt";
+                    return string.Empty;
                 }
                 else
                 {
-                    return popUpTextFileSelf;
+                    return popUpTextFileFullPathSelf;
                 }
             }
             set
             {
-                popUpTextFileSelf = value;
+                popUpTextFileFullPathSelf = value;
             }
         }
 
-        //[Category("General")]
-        //[DisplayName("Team pop-up text file")]
-        //[Description("The name of file that will appear in pop-up for anyone who opens this sln. This would typically be a file under source control.")]
-        //public string PopUpTextFileTeam
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(popUpTextFileTeam))
-        //        {
-        //            return @"..\ADefaultPopUpTextFile_TEAM_FileName.txt";
-        //        }
-        //        else
-        //        {
-        //            return popUpTextFileTeam;
-        //        }
-        //    }
-        //    set
-        //    {
-        //        popUpTextFileTeam = value;
-        //    }
-        //}
+        [Category("General")]
+        [DisplayName("Team pop-up text file")]
+        [Description("The name of file that will appear in pop-up for anyone who opens this sln. This would typically be a file under source control.")]
+        public string PopUpTextFileNameTeam
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(popUpTextFileNameTeam))
+                {
+                    return @"..\SolutionOpenPopUp.txt";
+                }
+                else
+                {
+                    return popUpTextFileNameTeam;
+                }
+            }
+            set
+            {
+                popUpTextFileNameTeam = value;
+            }
+        }
 
         public override void LoadSettingsFromStorage()
         {
             base.LoadSettingsFromStorage();
         }
 
-        private string popUpTextFileSelf;
-        //private string popUpTextFileTeam;
+        private string popUpTextFileFullPathSelf;
+        private string popUpTextFileNameTeam;
+
         private string previousPopUpTextFile { get; set; }
 
         protected override void OnApply(PageApplyEventArgs e)
         {
-            ApplyOptions(e, PopUpTextFileSelf);
-            //ApplyOptions(e, PopUpTextFileTeam);
+            ApplyOptions(e, PopUpTextFileFullPathSelf, true);
+            ApplyOptions(e, PopUpTextFileNameTeam, false);
 
             base.OnApply(e);
         }
 
-        private void ApplyOptions(PageApplyEventArgs e, string filename)
+        private void ApplyOptions(PageApplyEventArgs e, string filename, bool self)
         {
             var previousFileChanged = false;
 
@@ -91,15 +92,28 @@ namespace SolutionOpenPopUp.Options
 
                     if (persistOptionsDto.Persist)
                     {
-                        PersistVSToolOptions(persistOptionsDto.ValueToPersist);
+                        if (self)
+                        {
+                            PersistPopUpTextFileFullPathSelf(persistOptionsDto.ValueToPersist);
+                        }
+                        else
+                        {
+                            PersistPopUpTextFileNameTeam(persistOptionsDto.ValueToPersist);
+                        }
                     }
                 }
             }
         }
 
-        public void PersistVSToolOptions(string fileName)
+        public void PersistPopUpTextFileFullPathSelf(string fileName)
         {
-            VSPackage.Options.PopUpTextFileSelf = fileName;
+            VSPackage.Options.PopUpTextFileFullPathSelf = fileName;
+            VSPackage.Options.SaveSettingsToStorage();
+        }
+
+        public void PersistPopUpTextFileNameTeam(string fileName)
+        {
+            VSPackage.Options.PopUpTextFileNameTeam = fileName;
             VSPackage.Options.SaveSettingsToStorage();
         }
     }

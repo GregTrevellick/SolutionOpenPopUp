@@ -36,14 +36,24 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
-            var fileNamee = Options.PopUpTextFileSelf;           
-            var slnPath = dte.Solution.FullName;
-            var slnFolder = Path.GetDirectoryName(slnPath);
-            var fileName = Path.Combine(slnFolder, fileNamee); // "PopUpTextFileSelfTeam.txt");
-            var popUpMessage = GetPopUpMessage(fileName);
-            var titl = Vsix.Name + " " + Vsix.Version;
+            var popUpTextFileFullPathSelf = Options.PopUpTextFileFullPathSelf;
+            var popUpTextFileNameTeam = Options.PopUpTextFileNameTeam;
 
-            DisplayPopUpMessage(titl, popUpMessage);
+            var solutionPath = dte.Solution.FullName;
+            var solutionFolder = Path.GetDirectoryName(solutionPath);
+            var popUpFileSelf = popUpTextFileFullPathSelf;
+            var popUpFileTeam = Path.Combine(solutionFolder, popUpTextFileNameTeam);
+            var popUpMessage = GetPopUpMessage(popUpFileSelf, popUpFileTeam);
+            var popUpTitle = Vsix.Name + " " + Vsix.Version;
+
+            DisplayPopUpMessage(popUpTitle, popUpMessage);
+        }
+
+        private string GetPopUpMessage(string fileName1, string fileName2)
+        {
+            var result = GetPopUpMessage(fileName1);
+            result += GetPopUpMessage(fileName2);
+            return result;
         }
 
         private string GetPopUpMessage(string fileName)
