@@ -11,7 +11,7 @@ namespace SolutionOpenPopUp
         public const string Name = "SolutionOpenPopUp";
         public const string Description = @"When u opena sln and a certain file exists it will appear as a pop up";
         public const string Language = "en-US";
-        public const string Version = "1.0.4";
+        public const string Version = "1.0.5";
         public const string Author = "Greg Trevellick";
         public const string Tags = "";
     }
