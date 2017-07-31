@@ -6,11 +6,6 @@ namespace SolutionOpenPopUp.Helpers
 {
     public class BrowseFileHelper
     {
-        /// <summary>
-        /// Prompts the user to browses for a file on disc and returns details.
-        /// </summary>
-        /// <param name="executableFileToBrowseFor">The executable file to browse for.</param>
-        /// <returns></returns>
         public static FileBrowseOutcomeDto BrowseToFileLocation(string executableFileToBrowseFor)
         {
             var dialog = new OpenFileDialog

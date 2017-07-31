@@ -8,7 +8,7 @@ namespace SolutionOpenPopUp.Options
     {
         [Category("General")]
         [DisplayName("Personal pop-up text file")]
-        [Description("The name of the file on your PC that will appear in pop-up. Typically not a file under source control.")]
+        [Description("The name of the file on your PC that will appear in pop-up. This would typically not be a file under source control.")]
         public string PopUpTextFileSelf
         {
             get
@@ -28,10 +28,9 @@ namespace SolutionOpenPopUp.Options
             }
         }
 
-
         //[Category("General")]
-        //[DisplayName("Shared pop-up text file")]
-        //[Description("The name of file that will appear in pop-up for anyone who opens . Typically not a file under source control.  on your PC that is part of the source control 1")]
+        //[DisplayName("Team pop-up text file")]
+        //[Description("The name of file that will appear in pop-up for anyone who opens this sln. This would typically be a file under source control.")]
         //public string PopUpTextFileTeam
         //{
         //    get

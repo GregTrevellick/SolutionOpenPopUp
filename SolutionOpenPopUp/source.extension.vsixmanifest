@@ -3,7 +3,7 @@
 	<Metadata>
 		<Identity Id="9ea776a6-e317-4ba8-a957-fa59958ec214" Version="1.0.4" Language="en-US" Publisher="Greg Trevellick" />
 		<DisplayName>SolutionOpenPopUp</DisplayName>
-		<Description xml:space="preserve">SolutionOpenPopUp descriptionSolutionOpenPopUp</Description>
+		<Description xml:space="preserve">When u opena sln and a certain file exists it will appear as a pop up</Description>
 		<MoreInfo>https://github.com/GregTrevellick/SolutionOpenPopUp</MoreInfo>
 		<License>LICENSE.txt</License>
 		<ReleaseNotes>https://github.com/GregTrevellick/SolutionOpenPopUp/blob/master/CHANGELOG.md</ReleaseNotes>
