@@ -121,7 +121,12 @@
     <value>SolutionOpenPopUp</value>
   </data>
   <data name="112" xml:space="preserve">
-    <value>When u opena sln and a certain file exists it will appear as a pop up</value>
+    <value>This extension will open a pop-up dialog containing the contents of a specific text file in a solution, when the solution is opened.
+
+This [Visual Studio][VisualStudioUrl] extension will open a pop-up dialog containing 
+the contents of a specific text file in a solution, when the solution is opened.
+
+</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">

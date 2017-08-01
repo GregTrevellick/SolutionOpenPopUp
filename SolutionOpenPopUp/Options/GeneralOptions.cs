@@ -7,7 +7,7 @@ namespace SolutionOpenPopUp.Options
     public class GeneralOptions : DialogPage
     {
         [Category("General")]
-        [DisplayName("Personal pop-up text file")]
+        [DisplayName("Personal solution open pop-up file")]
         [Description("The name of the file on your PC that will appear in pop-up. This would typically not be a file under source control.")]
         public string PopUpTextFileFullPathSelf
         {
@@ -29,7 +29,7 @@ namespace SolutionOpenPopUp.Options
         }
 
         [Category("General")]
-        [DisplayName("Team pop-up text file")]
+        [DisplayName("Shared solution open pop-up file")]
         [Description("The fixed name of file. located in the root of your solution folder, that will appear in pop-up for anyone who opens this sln. You should typically place this file under source control.")]
         public string PopUpTextFileNameTeam
         {
