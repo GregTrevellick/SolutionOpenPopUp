@@ -13,6 +13,6 @@ namespace SolutionOpenPopUp
         public const string Language = "en-US";
         public const string Version = "1.0.5";
         public const string Author = "Greg Trevellick";
-        public const string Tags = "";
+        public const string Tags = "solution open, popup, pop-up, pop up";
     }
 }

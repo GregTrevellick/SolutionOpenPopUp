@@ -9,6 +9,7 @@
 		<ReleaseNotes>https://github.com/GregTrevellick/SolutionOpenPopUp/blob/master/CHANGELOG.md</ReleaseNotes>
 		<Icon>Resources\VsixExtensionIcon_90x90.png</Icon>
 		<PreviewImage>Resources\VsixExtensionPreview_175x175.png</PreviewImage>
+		<Tags>solution open, popup, pop-up, pop up</Tags>
 	</Metadata>
 	<Installation>
 		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[11.0,16.0)" />

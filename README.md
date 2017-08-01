@@ -1,12 +1,12 @@
-[AppVeyorProjectUrl]: https://ci.appveyor.com/project/GregTrevellick/autofindreplace
-[AppVeyorProjectBuildStatusBadgeSvg]: https://ci.appveyor.com/api/projects/status/tcugu9rs3ihbgl7o?svg=true
-[GitHubRepoURL]: https://github.com/GregTrevellick/AutoFindReplace
-[GitHubRepoIssuesURL]: https://github.com/GregTrevellick/AutoFindReplace/issues
-[GitHubRepoPullRequestsURL]: https://github.com/GregTrevellick/AutoFindReplace/pulls
-[VersionNumberBadgeURL]: https://vsmarketplacebadge.apphb.com/version/GregTrevellick.AutoFindReplace.svg
+[AppVeyorProjectUrl]: https://ci.appveyor.com/project/GregTrevellick/solutionopenpopup
+[AppVeyorProjectBuildStatusBadgeSvg]: https://ci.appveyor.com/api/projects/status/ap87wkdaam6jkgui?svg=true
+[GitHubRepoURL]: https://github.com/GregTrevellick/SolutionOpenPopUp
+[GitHubRepoIssuesURL]: https://github.com/GregTrevellick/SolutionOpenPopUp/issues
+[GitHubRepoPullRequestsURL]: https://github.com/GregTrevellick/SolutionOpenPopUp/pulls
+[VersionNumberBadgeURL]: https://vsmarketplacebadge.apphb.com/version/GregTrevellick.SolutionOpenPopUp.svg
 [VisualStudioURL]: https://www.visualstudio.com/
-[VSMarketplaceUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.AutoFindReplace
-[VSMarketplaceReviewsUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.AutoFindReplace#review-details
+[VSMarketplaceUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp
+[VSMarketplaceReviewsUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp#review-details
 
 
 # SolutionOpenPopUp
@@ -14,9 +14,8 @@
 [![Licence](https://img.shields.io/github/license/gittools/gitlink.svg)](/LICENSE.txt)
 [![Build status][AppVeyorProjectBuildStatusBadgeSvg]][AppVeyorProjectUrl]
 [![][VersionNumberBadgeURL]][VSMarketplaceUrl]
-<!--![](https://vsmarketplacebadge.apphb.com/installs/GregTrevellick.AutoFindReplace.svg)-->
-<!--![](https://vsmarketplacebadge.apphb.com/rating/GregTrevellick.AutoFindReplace.svg)-->
-<!--[![Source Browser](https://img.shields.io/badge/Browse-Source-green.svg)](http://sourcebrowser.io/Browse/GregTrevellick/AutoFindReplace)-->
+<!--![](https://vsmarketplacebadge.apphb.com/installs/GregTrevellick.SolutionOpenPopUp.svg)-->
+<!--![](https://vsmarketplacebadge.apphb.com/rating/GregTrevellick.SolutionOpenPopUp.svg)-->
 
 Download this extension from the [VS Marketplace][VSMarketplaceUrl].
 
@@ -24,24 +23,9 @@ Download this extension from the [VS Marketplace][VSMarketplaceUrl].
 
 <!--COPY START FOR VS GALLERY-->
 
-This [Visual Studio][VisualStudioUrl] extension will automatically find and replace specified text within specified files when a solution is opened.
+This [Visual Studio][VisualStudioUrl] extension will open a pop-up dialog containing the contents of a specific text file in a solution, when the solution is opened.
 
-The intention is to eliminate repetitive manual code modifications that a developer may find neccessary for certain Visual Studio solutions.
-
-With this extension installed Visual Studio will automatically perform a find/replace action on specified file(s) within a specified project upon opening a named solution.
-
-If you like this ***free*** extension, please give it a [review][VSMarketplaceReviewsUrl].
-
-See the [change log](CHANGELOG.md) for road map and release history. Bugs can be logged [here][GitHubRepoIssuesURL].
-
-## Example
-
-
-## Who Is This Extension For ?
-
- - It is not possible for the change(s) to be persisted indefinately in the developer's source control repository, for any reason
-
- - It is not possible for the change(s) to be persisted durably in the developer's local file system, for any reason
+ - *If you like this ***free*** tool please take a few seconds out to give a star rating below*.
 
 ## Use-Cases
 
