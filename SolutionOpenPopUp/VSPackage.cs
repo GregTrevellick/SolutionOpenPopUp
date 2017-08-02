@@ -13,8 +13,7 @@ namespace SolutionOpenPopUp
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration(productName: "#110", productDetails: "#112", productId: Vsix.Version, IconResourceID = 400)]
-    //[Guid(PackageGuids.guidOpenInAppPackageString)]
-    [Guid("5e45aa4e-1a24-4edf-b10a-228b63448f70")]//153788b5-1eff-4709-b5f3-8bb0a92c0799
+    [Guid("65dcb9bb-a90a-458b-9a89-a12fe85b9077")]
     public sealed class VSPackage : Package
     {
         private DTE dte;
@@ -39,37 +38,58 @@ namespace SolutionOpenPopUp
             var solutionPath = dte.Solution.FullName;
             var solutionFolder = Path.GetDirectoryName(solutionPath);
             var popUpTextFileNameTeam = GetPopUpTextFileNameTeam();
-            var popUpFileTeam = Path.Combine(solutionFolder, popUpTextFileNameTeam);
 
+            var popUpFileTeam = Path.Combine(solutionFolder, popUpTextFileNameTeam);
             var popUpTextFileFullPathSelf = GetPopUpTextFileFullPathSelf();
-            var popUpMessage = GetPopUpMessage(popUpTextFileFullPathSelf, popUpFileTeam);
+
+            var popUpBody = GetPopUpMessage(popUpTextFileFullPathSelf, popUpFileTeam);
             var popUpTitle = Vsix.Name + " " + Vsix.Version;
 
-            DisplayPopUpMessage(popUpTitle, popUpMessage);
+            DisplayPopUpMessage(popUpTitle, popUpBody);
         }
 
-        private string GetPopUpMessage(string fileName1, string fileName2)
+        private string GetPopUpMessage(string popUpFileSelf, string popUpFileTeam)
         {
-            var result = GetPopUpMessage(fileName1);
-            result += GetPopUpMessage(fileName2);
+            var popUpFileSelfIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(popUpFileSelf);
+            var popUpFileTeamIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(popUpFileTeam);
+
+            var result = string.Empty;
+
+            result += GetPopUpMessage(popUpFileSelf, popUpFileSelfIsUnderSourceControl);
+            result += GetPopUpMessage(popUpFileTeam, popUpFileTeamIsUnderSourceControl);
+
             return result;
         }
 
-        private string GetPopUpMessage(string fileName)
+        private string GetPopUpMessage(string fileName, bool fileIsUnderSourceControl)
         {
+            var result = string.Empty;
+
             if (File.Exists(fileName))
             {
-                return File.ReadAllText(fileName);
+                result += fileName;
+                result += Environment.NewLine;
+                result += Environment.NewLine;
+                result += fileIsUnderSourceControl ? "under source control" : "not in scc";//gregt 
+                result += Environment.NewLine;
+                result += Environment.NewLine;
+                result += File.ReadAllText(fileName);
+                result += Environment.NewLine;
+                result += Environment.NewLine;
             }
             else
             {
-                return string.Empty;
+                result += "File " + fileName + "not found.";
+                result += Environment.NewLine;
+                result += Environment.NewLine;
             }
+
+            return result;
         }
 
-        private void DisplayPopUpMessage(string title, string text)
+        private void DisplayPopUpMessage(string popUpTitle, string popUpBody)
         {
-            if (!string.IsNullOrEmpty(text))
+            if (!string.IsNullOrEmpty(popUpBody))
             {
                 IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
                 Guid clsid = Guid.Empty;
@@ -78,8 +98,8 @@ namespace SolutionOpenPopUp
                 uiShell.ShowMessageBox(
                     0,
                     ref clsid,
-                    title.ToUpper(),
-                    text,
+                    popUpTitle,
+                    popUpBody,
                     string.Empty,
                     0,
                     OLEMSGBUTTON.OLEMSGBUTTON_OK,

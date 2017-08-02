@@ -16,7 +16,7 @@ the contents of a specific text file in a solution, when the solution is opened.
 
 ";
         public const string Language = "en-US";
-        public const string Version = "1.0.8";
+        public const string Version = "1.0.9";
         public const string Author = "Greg Trevellick";
         public const string Tags = "solution open, popup, pop-up, pop up";
     }
