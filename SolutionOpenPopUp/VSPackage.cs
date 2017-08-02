@@ -65,21 +65,25 @@ namespace SolutionOpenPopUp
         {
             var result = string.Empty;
 
-            if (File.Exists(fileName))
+            if (!string.IsNullOrEmpty(fileName))
             {
-                result += fileName;
-                result += Environment.NewLine;
-                result += Environment.NewLine;
-                result += fileIsUnderSourceControl ? "under source control" : "not in scc";//gregt 
-                result += Environment.NewLine;
-                result += Environment.NewLine;
-                result += File.ReadAllText(fileName);
-                result += Environment.NewLine;
-                result += Environment.NewLine;
-            }
-            else
-            {
-                result += "File " + fileName + "not found.";
+                var textLimit = 2000;
+
+                var sourceControlStatus = fileIsUnderSourceControl ? "this file IS under source control" : "this file is NOT under source control";
+
+                if (File.Exists(fileName))
+                {
+                    result += File.ReadAllText(fileName);
+                    result = result.Substring(0, textLimit);
+                    result += Environment.NewLine;
+                    result += Environment.NewLine;
+                    result += "Source: " + fileName + " (" + sourceControlStatus + ")";
+                }
+                else
+                {
+                    result += "The file " + fileName + " cannnot be found.";
+                }
+
                 result += Environment.NewLine;
                 result += Environment.NewLine;
             }
