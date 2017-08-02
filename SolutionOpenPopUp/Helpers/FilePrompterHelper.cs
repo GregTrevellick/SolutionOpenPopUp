@@ -14,7 +14,7 @@ namespace SolutionOpenPopUp.Helpers
             this.fileToBrowseFor = fileToBrowseFor;
         }
 
-        public PersistOptionsDto PromptForActualExeFile(string originalPathToFile)
+        public PersistOptionsDto PromptForActualFile(string originalPathToFile)
         {
             var saveSettingsDto = new PersistOptionsDto();
 

@@ -72,7 +72,7 @@ namespace SolutionOpenPopUp.Options
 
                     var filePrompterHelper = new FilePrompterHelper(caption, "something.exe");
 
-                    var persistOptionsDto = filePrompterHelper.PromptForActualExeFile(selfFilename);
+                    var persistOptionsDto = filePrompterHelper.PromptForActualFile(selfFilename);
 
                     if (persistOptionsDto.Persist)
                     {

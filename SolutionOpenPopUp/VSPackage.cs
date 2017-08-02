@@ -67,7 +67,7 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(fileName))
             {
-                var textLimit = 2000;
+                var textLimit = 2000;//gregt put in options
 
                 var sourceControlStatus = fileIsUnderSourceControl ? "this file IS under source control" : "this file is NOT under source control";
 

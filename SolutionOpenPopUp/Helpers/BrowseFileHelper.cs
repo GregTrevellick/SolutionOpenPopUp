@@ -10,7 +10,7 @@ namespace SolutionOpenPopUp.Helpers
         {
             var dialog = new OpenFileDialog
             {
-                DefaultExt = ".exe",
+                DefaultExt = ".txt",
                 FileName = executableFileToBrowseFor,
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
                 CheckFileExists = true
