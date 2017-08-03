@@ -113,13 +113,13 @@ namespace SolutionOpenPopUp
 
                     result += Environment.NewLine;
 
-                    var sourceControlStatus = fileIsUnderSourceControl ? "IS" : "is NOT";
+                    var sourceControlStatus = fileIsUnderSourceControl ? "is" : "is NOT";
                     popUpFooter += bulletPoint + textFile + " (file " + sourceControlStatus + " under source control)";
                     popUpFooter += Environment.NewLine;
                 }
                 else
                 {
-                    popUpFooter += bulletPoint + textFile + " not be found.";
+                    popUpFooter += bulletPoint + textFile + " not found.";
                     popUpFooter += Environment.NewLine;
                 }
 
