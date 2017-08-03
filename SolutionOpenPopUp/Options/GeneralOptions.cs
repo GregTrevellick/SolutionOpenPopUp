@@ -6,86 +6,103 @@ namespace SolutionOpenPopUp.Options
 {
     public class GeneralOptions : DialogPage
     {
-        [Category("General")]
-        [DisplayName("Personal solution open pop-up file")]
-        [Description("The name of the file on your PC that will appear in pop-up. This would typically not be a file under source control.")]
-        public string PopUpTextFileFullPathSelf
+        //[Category("General")]
+        //[DisplayName("Personal solution open pop-up file")]
+        //[Description("The name of the file on your PC that will appear in pop-up. This would typically not be a file under source control.")]
+        //public string PopUpTextFileFullPathSelf
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(popUpTextFileFullPathSelf))
+        //        {
+        //            return string.Empty;
+        //        }
+        //        else
+        //        {
+        //            return popUpTextFileFullPathSelf;
+        //        }
+        //    }
+        //    set
+        //    {
+        //        popUpTextFileFullPathSelf = value;
+        //    }
+        //}
+
+        public string ReadMeDotTxt
         {
-            get
-            {
-                if (string.IsNullOrEmpty(popUpTextFileFullPathSelf))
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return popUpTextFileFullPathSelf;
-                }
-            }
-            set
-            {
-                popUpTextFileFullPathSelf = value;
-            }
+            get { return @"ReadMe.txt"; }
         }
 
-        [Category("General")]
-        [DisplayName("Shared solution open pop-up file")]
-        [Description("The fixed name of file. located in the root of your solution folder, that will appear in pop-up for anyone who opens this sln. You should typically place this file under source control.")]
-        public string PopUpTextFileNameTeam
+        //[Category("General")]
+        //[DisplayName("Shared solution open pop-up file")]
+        //[Description("The fixed name of file. located in the root of your solution folder, that will appear in pop-up for anyone who opens this sln. You should typically place this file under source control.")]
+        public string SolutionOpenPopUpDotTxt
         {
             get { return @"SolutionOpenPopUp.txt"; }
         }
 
-        public override void LoadSettingsFromStorage()
-        {
-            base.LoadSettingsFromStorage();
-        }
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName("Show ReadMe.txt from root of solution when opening solution")]
+        [Description("Set to true so that the content of a file named 'ReadMe.txt' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
+        public bool ShowReadMeDotTxt { get; set; } = true;
 
-        private string popUpTextFileFullPathSelf;
+        [Category(CommonConstants.CategorySubLevel)]
+        [DisplayName("Show SolutionOpenPopUp.txt from root of solution when opening solution")]
+        [Description("Set to true so that the content of a file named 'SolutionOpenPopUp.txt' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
+        public bool ShowSolutionOpenPopUpDotTxt { get; set; } = true;
 
-        private string previousPopUpTextFile { get; set; }
 
-        protected override void OnApply(PageApplyEventArgs e)
-        {
-            ApplyOptions(e, PopUpTextFileFullPathSelf);
 
-            base.OnApply(e);
-        }
+        ////public override void LoadSettingsFromStorage()
+        ////{
+        ////    base.LoadSettingsFromStorage();
+        ////}
 
-        private void ApplyOptions(PageApplyEventArgs e, string selfFilename)
-        {
-            var previousFileChanged = false;
+        //private string popUpTextFileFullPathSelf;
 
-            if (!string.IsNullOrEmpty(selfFilename))
-            {
-                previousFileChanged = true;
-                previousPopUpTextFile = selfFilename;
-            }
+        //private string previousPopUpTextFile { get; set; }
 
-            if (previousFileChanged)
-            {
-                if (!ArtefactsHelper.DoesFileExist(selfFilename))
-                {
-                    e.ApplyBehavior = ApplyKind.Cancel;
+        //protected override void OnApply(PageApplyEventArgs e)
+        //{
+        //    ApplyOptions(e, PopUpTextFileFullPathSelf);
 
-                    var caption = Vsix.Name + " " + Vsix.Version;
+        //    base.OnApply(e);
+        //}
 
-                    var filePrompterHelper = new FilePrompterHelper(caption, "something.exe");
+        //private void ApplyOptions(PageApplyEventArgs e, string selfFilename)
+        //{
+        //    var previousFileChanged = false;
 
-                    var persistOptionsDto = filePrompterHelper.PromptForActualFile(selfFilename);
+        //    if (!string.IsNullOrEmpty(selfFilename))
+        //    {
+        //        previousFileChanged = true;
+        //        previousPopUpTextFile = selfFilename;
+        //    }
 
-                    if (persistOptionsDto.Persist)
-                    {
-                        PersistPopUpTextFileFullPathSelf(persistOptionsDto.ValueToPersist);
-                    }
-                }
-            }
-        }
+        //    if (previousFileChanged)
+        //    {
+        //        if (!ArtefactsHelper.DoesFileExist(selfFilename))
+        //        {
+        //            e.ApplyBehavior = ApplyKind.Cancel;
 
-        public void PersistPopUpTextFileFullPathSelf(string fileName)
-        {
-            VSPackage.Options.PopUpTextFileFullPathSelf = fileName;
-            VSPackage.Options.SaveSettingsToStorage();
-        }
+        //            var caption = Vsix.Name + " " + Vsix.Version;
+
+        //            var filePrompterHelper = new FilePrompterHelper(caption, "something.exe");
+
+        //            var persistOptionsDto = filePrompterHelper.PromptForActualFile(selfFilename);
+
+        //            if (persistOptionsDto.Persist)
+        //            {
+        //                PersistPopUpTextFileFullPathSelf(persistOptionsDto.ValueToPersist);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //public void PersistPopUpTextFileFullPathSelf(string fileName)
+        //{
+        //    VSPackage.Options.PopUpTextFileFullPathSelf = fileName;
+        //    VSPackage.Options.SaveSettingsToStorage();
+        //}
     }
 }

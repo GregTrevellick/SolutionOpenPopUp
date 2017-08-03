@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using SolutionOpenPopUp.Options;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -35,53 +36,68 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
+            var textFiles = new List<string>();
+
             var solutionPath = dte.Solution.FullName;
             var solutionFolder = Path.GetDirectoryName(solutionPath);
-            var popUpTextFileNameTeam = GetPopUpTextFileNameTeam();
 
-            var popUpFileTeam = Path.Combine(solutionFolder, popUpTextFileNameTeam);
-            var popUpTextFileFullPathSelf = GetPopUpTextFileFullPathSelf();
+            var solutionOpenPopUpDotTxt = GetSolutionOpenPopUpDotTxt();
+            var textFile = Path.Combine(solutionFolder, solutionOpenPopUpDotTxt);
+            textFiles.Add(textFile);
 
-            var popUpBody = GetPopUpMessage(popUpTextFileFullPathSelf, popUpFileTeam);
+            var readMeDotTxt = GetReadMeDotTxt();
+            textFile = Path.Combine(solutionFolder, readMeDotTxt);
+            textFiles.Add(textFile);
+            
+            var popUpBody = GetPopUpMessage(textFiles);
             var popUpTitle = Vsix.Name + " " + Vsix.Version;
 
             DisplayPopUpMessage(popUpTitle, popUpBody);
         }
 
-        private string GetPopUpMessage(string popUpFileSelf, string popUpFileTeam)
+        private string GetPopUpMessage(IEnumerable<string> textFiles)
         {
-            var popUpFileSelfIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(popUpFileSelf);
-            var popUpFileTeamIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(popUpFileTeam);
-
             var result = string.Empty;
 
-            result += GetPopUpMessage(popUpFileSelf, popUpFileSelfIsUnderSourceControl);
-            result += GetPopUpMessage(popUpFileTeam, popUpFileTeamIsUnderSourceControl);
+            foreach (var textFile in textFiles)
+            {
+                var textFileIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(textFile);
+                result += GetPopUpMessage(textFile, textFileIsUnderSourceControl);
+            }
 
             return result;
         }
 
-        private string GetPopUpMessage(string fileName, bool fileIsUnderSourceControl)
+        private string GetPopUpMessage(string textFile, bool fileIsUnderSourceControl)
         {
             var result = string.Empty;
 
-            if (!string.IsNullOrEmpty(fileName))
+            if (!string.IsNullOrEmpty(textFile))
             {
-                var textLimit = 2000;//gregt put in options
+                var textLimit = 2000;//gregt put into options
 
-                var sourceControlStatus = fileIsUnderSourceControl ? "this file IS under source control" : "this file is NOT under source control";
-
-                if (File.Exists(fileName))
+                if (File.Exists(textFile))
                 {
-                    result += File.ReadAllText(fileName);
-                    result = result.Substring(0, textLimit);
+                    var sourceControlStatus = fileIsUnderSourceControl ? "this file IS under source control" : "this file is NOT under source control";
+
+                    var text = File.ReadAllText(textFile);
+
+                    if (text.Length > textLimit)
+                    {
+                        result += text.Substring(0, textLimit);
+                    }
+                    else
+                    {
+                        result += text;
+                    }
+
                     result += Environment.NewLine;
                     result += Environment.NewLine;
-                    result += "Source: " + fileName + " (" + sourceControlStatus + ")";
+                    result += "Source: " + textFile + " (" + sourceControlStatus + ")";
                 }
                 else
                 {
-                    result += "The file " + fileName + " cannnot be found.";
+                    result += "The file " + textFile + " cannnot be found.";
                 }
 
                 result += Environment.NewLine;
@@ -108,22 +124,22 @@ namespace SolutionOpenPopUp
                     0,
                     OLEMSGBUTTON.OLEMSGBUTTON_OK,
                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
-                    OLEMSGICON.OLEMSGICON_INFO,
+                    OLEMSGICON.OLEMSGICON_NOICON,
                     0,
                     out result);
             }
         }
 
-        private string GetPopUpTextFileFullPathSelf()
+        private string GetReadMeDotTxt()
         {
             var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-            return generalOptions.PopUpTextFileFullPathSelf;
+            return generalOptions.ReadMeDotTxt;
         }
 
-        private string GetPopUpTextFileNameTeam()
+        private string GetSolutionOpenPopUpDotTxt()
         {
             var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-            return generalOptions.PopUpTextFileNameTeam;
+            return generalOptions.SolutionOpenPopUpDotTxt;
         }
     }
 }

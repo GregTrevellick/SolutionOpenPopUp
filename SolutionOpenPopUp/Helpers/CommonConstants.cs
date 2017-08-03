@@ -17,6 +17,8 @@ namespace SolutionOpenPopUp.Helpers
                 + Environment.NewLine + Environment.NewLine
                 + "Click YES to locate the file, NO to save anyway.";
         }
+
+        public const string CategorySubLevel = "General";
     }
 }
 
