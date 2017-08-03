@@ -7,40 +7,24 @@ namespace SolutionOpenPopUp.Options
     public class GeneralOptions : DialogPage
     {
         //[Category("General")]
-        //[DisplayName("Personal solution open pop-up file")]
+        //[DisplayName("Custom solution open pop-up file")]
         //[Description("The name of the file on your PC that will appear in pop-up. This would typically not be a file under source control.")]
-        //public string PopUpTextFileFullPathSelf
+        //public string CustomFileDotTxt
         //{
         //    get
         //    {
-        //        if (string.IsNullOrEmpty(popUpTextFileFullPathSelf))
+        //        if (string.IsNullOrEmpty(customFileDotTxt))
         //        {
         //            return string.Empty;
         //        }
         //        else
         //        {
-        //            return popUpTextFileFullPathSelf;
+        //            return customFileDotTxt;
         //        }
         //    }
         //    set
         //    {
-        //        popUpTextFileFullPathSelf = value;
-        //    }
-        //}
-
-        //public string ReadMeDotTxt
-        //{
-        //    get { return @"ReadMe.txt"; }
-        //}
-
-        ////[Category("General")]
-        ////[DisplayName("Shared solution open pop-up file")]
-        ////[Description("The fixed name of file. located in the root of your solution folder, that will appear in pop-up for anyone who opens this sln. You should typically place this file under source control.")]
-        //public string SolutionOpenPopUpDotTxt
-        //{
-        //    get
-        //    {
-        //        return CommonConstants.CategorySubLevel;// @"SolutionOpenPopUp.txt"; 
+        //        customFileDotTxt = value;
         //    }
         //}
 
@@ -59,50 +43,49 @@ namespace SolutionOpenPopUp.Options
         ////    base.LoadSettingsFromStorage();
         ////}
 
-        //private string popUpTextFileFullPathSelf;
-
-        //private string previousPopUpTextFile { get; set; }
+        //private string customFileDotTxt { get; set; }
+        //private string previousCustomFileDotTxt { get; set; }
 
         //protected override void OnApply(PageApplyEventArgs e)
         //{
-        //    ApplyOptions(e, PopUpTextFileFullPathSelf);
+        //    ApplyOptions(e, CustomFileDotTxt);
 
         //    base.OnApply(e);
         //}
 
-        //private void ApplyOptions(PageApplyEventArgs e, string selfFilename)
+        //private void ApplyOptions(PageApplyEventArgs e, string customFileDotTxt)
         //{
         //    var previousFileChanged = false;
 
-        //    if (!string.IsNullOrEmpty(selfFilename))
+        //    if (!string.IsNullOrEmpty(customFileDotTxt))
         //    {
         //        previousFileChanged = true;
-        //        previousPopUpTextFile = selfFilename;
+        //        previousCustomFileDotTxt = customFileDotTxt;
         //    }
 
         //    if (previousFileChanged)
         //    {
-        //        if (!ArtefactsHelper.DoesFileExist(selfFilename))
+        //        if (!ArtefactsHelper.DoesFileExist(customFileDotTxt))
         //        {
         //            e.ApplyBehavior = ApplyKind.Cancel;
 
         //            var caption = Vsix.Name + " " + Vsix.Version;
 
-        //            var filePrompterHelper = new FilePrompterHelper(caption, "something.exe");
+        //            var filePrompterHelper = new FilePrompterHelper(caption, customFileDotTxt);
 
-        //            var persistOptionsDto = filePrompterHelper.PromptForActualFile(selfFilename);
+        //            var persistOptionsDto = filePrompterHelper.PromptForActualFile(customFileDotTxt);
 
         //            if (persistOptionsDto.Persist)
         //            {
-        //                PersistPopUpTextFileFullPathSelf(persistOptionsDto.ValueToPersist);
+        //                PersistCustomFileDotTxt(persistOptionsDto.ValueToPersist);
         //            }
         //        }
         //    }
         //}
 
-        //public void PersistPopUpTextFileFullPathSelf(string fileName)
+        //public void PersistCustomFileDotTxt(string fileName)
         //{
-        //    VSPackage.Options.PopUpTextFileFullPathSelf = fileName;
+        //    VSPackage.Options.CustomFileDotTxt = fileName;
         //    VSPackage.Options.SaveSettingsToStorage();
         //}
     }

@@ -1,13 +1,13 @@
 ﻿using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using SolutionOpenPopUp.Helpers;
 using SolutionOpenPopUp.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Runtime.InteropServices;
-using SolutionOpenPopUp.Helpers;
 
 namespace SolutionOpenPopUp
 {
@@ -131,16 +131,10 @@ namespace SolutionOpenPopUp
             }
         }
 
-        //private string GetReadMeDotTxt()
+        //private string GetCustomFileDotTxt()
         //{
         //    var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-        //    return generalOptions.ReadMeDotTxt;
-        //}
-
-        //private string GetSolutionOpenPopUpDotTxt()
-        //{
-        //    var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-        //    return generalOptions.SolutionOpenPopUpDotTxt;
+        //    return generalOptions.CustomFileDotTxt;
         //}
     }
 }
