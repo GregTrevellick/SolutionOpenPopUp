@@ -20,6 +20,7 @@ namespace SolutionOpenPopUp
     {
         private DTE dte;
         public static GeneralOptions Options { get; private set; }
+        private string popUpFooter;
 
         public VSPackage()
         {
@@ -50,21 +51,28 @@ namespace SolutionOpenPopUp
             textFile = Path.Combine(solutionFolder, readMeDotTxt);
             textFiles.Add(textFile);
             
-            var popUpBody = GetPopUpMessage(textFiles);
+            var popUpBody = GetPopUpBody(textFiles);
             var popUpTitle = Vsix.Name + " " + Vsix.Version;
 
             DisplayPopUpMessage(popUpTitle, popUpBody);
         }
 
-        private string GetPopUpMessage(IEnumerable<string> textFiles)
+        private string GetPopUpBody(IEnumerable<string> textFiles)
         {
             var result = string.Empty;
-
+            
             foreach (var textFile in textFiles)
             {
                 var textFileIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(textFile);
                 result += GetPopUpMessage(textFile, textFileIsUnderSourceControl);
             }
+
+            if (!string.IsNullOrEmpty(popUpFooter))
+            {
+                //result += Environment.NewLine;
+                result += "Source(s):";
+                result += popUpFooter;
+            }            
 
             return result;
         }
@@ -79,8 +87,6 @@ namespace SolutionOpenPopUp
 
                 if (File.Exists(textFile))
                 {
-                    var sourceControlStatus = fileIsUnderSourceControl ? "this file IS under source control" : "this file is NOT under source control";
-
                     var text = File.ReadAllText(textFile);
 
                     if (text.Length > textLimit)
@@ -93,8 +99,12 @@ namespace SolutionOpenPopUp
                     }
 
                     result += Environment.NewLine;
+                   // result += Environment.NewLine;
+
+                    var sourceControlStatus = fileIsUnderSourceControl ? "IS" : "is NOT";
+                    popUpFooter += textFile + " (file " + sourceControlStatus + " under source control)";
                     result += Environment.NewLine;
-                    result += "Source: " + textFile + " (" + sourceControlStatus + ")";
+                    result += Environment.NewLine;
                 }
                 else
                 {
@@ -102,7 +112,7 @@ namespace SolutionOpenPopUp
                 }
 
                 result += Environment.NewLine;
-                result += Environment.NewLine;
+                //result += Environment.NewLine;
             }
 
             return result;

@@ -122,10 +122,6 @@
   </data>
   <data name="112" xml:space="preserve">
     <value>This extension will open a pop-up dialog containing the contents of a specific text file in a solution, when the solution is opened.
-
-This [Visual Studio][VisualStudioUrl] extension will open a pop-up dialog containing 
-the contents of a specific text file in a solution, when the solution is opened.
-
 </value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />

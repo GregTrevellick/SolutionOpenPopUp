@@ -1,30 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-	<Metadata>
-		<Identity Id="9ea776a6-e317-4ba8-a957-fa59958ec214" Version="1.0.9" Language="en-US" Publisher="Greg Trevellick" />
-		<DisplayName>SolutionOpenPopUp</DisplayName>
-		<Description xml:space="preserve">This extension will open a pop-up dialog containing the contents of a specific text file in a solution, when the solution is opened.
-
-This [Visual Studio][VisualStudioUrl] extension will open a pop-up dialog containing 
-the contents of a specific text file in a solution, when the solution is opened.
-
+  <Metadata>
+    <Identity Id="9ea776a6-e317-4ba8-a957-fa59958ec214" Version="1.0.13" Language="en-US" Publisher="Greg Trevellick" />
+    <DisplayName>SolutionOpenPopUp</DisplayName>
+    <Description xml:space="preserve">This extension will open a pop-up dialog containing the contents of a specific text file in a solution, when the solution is opened.
 </Description>
-		<MoreInfo>https://github.com/GregTrevellick/SolutionOpenPopUp</MoreInfo>
-		<License>LICENSE.txt</License>
-		<ReleaseNotes>https://github.com/GregTrevellick/SolutionOpenPopUp/blob/master/CHANGELOG.md</ReleaseNotes>
-		<Icon>Resources\VsixExtensionIcon_90x90.png</Icon>
-		<PreviewImage>Resources\VsixExtensionPreview_175x175.png</PreviewImage>
-		<Tags>solution open, popup, pop-up, pop up</Tags>
-	</Metadata>
-	<Installation>
-		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[11.0,16.0)" />
-	</Installation>
-	<Dependencies>
-	</Dependencies>
-	<Assets>
-		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-	</Assets>
-	<Prerequisites>
-		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0.26208.0,16.0)" DisplayName="Visual Studio core editor" />
-	</Prerequisites>
+    <MoreInfo>https://github.com/GregTrevellick/SolutionOpenPopUp</MoreInfo>
+    <License>LICENSE.txt</License>
+    <ReleaseNotes>https://github.com/GregTrevellick/SolutionOpenPopUp/blob/master/CHANGELOG.md</ReleaseNotes>
+    <Icon>Resources\VsixExtensionIcon_90x90.png</Icon>
+    <PreviewImage>Resources\VsixExtensionPreview_175x175.png</PreviewImage>
+    <Tags>solution open, popup, pop-up, pop up, gotcha, gotchas</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[11.0,16.0)" />
+  </Installation>
+  <Dependencies>
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+  </Assets>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0.26208.0,16.0)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
 </PackageManifest>
