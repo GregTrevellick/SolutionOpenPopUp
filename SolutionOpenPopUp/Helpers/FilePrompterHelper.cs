@@ -19,7 +19,7 @@ namespace SolutionOpenPopUp.Helpers
             var saveSettingsDto = new PersistOptionsDto();
 
             var box = MessageBox.Show(
-               CommonConstants.PromptForActualExeFile(originalPathToFile),
+               CommonConstants.PromptForActualFile(originalPathToFile),
                caption,
                MessageBoxButtons.YesNo,
                MessageBoxIcon.Question);

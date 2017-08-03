@@ -28,30 +28,31 @@ namespace SolutionOpenPopUp.Options
         //    }
         //}
 
-        public string ReadMeDotTxt
-        {
-            get { return @"ReadMe.txt"; }
-        }
+        //public string ReadMeDotTxt
+        //{
+        //    get { return @"ReadMe.txt"; }
+        //}
 
-        //[Category("General")]
-        //[DisplayName("Shared solution open pop-up file")]
-        //[Description("The fixed name of file. located in the root of your solution folder, that will appear in pop-up for anyone who opens this sln. You should typically place this file under source control.")]
-        public string SolutionOpenPopUpDotTxt
-        {
-            get { return @"SolutionOpenPopUp.txt"; }
-        }
+        ////[Category("General")]
+        ////[DisplayName("Shared solution open pop-up file")]
+        ////[Description("The fixed name of file. located in the root of your solution folder, that will appear in pop-up for anyone who opens this sln. You should typically place this file under source control.")]
+        //public string SolutionOpenPopUpDotTxt
+        //{
+        //    get
+        //    {
+        //        return CommonConstants.CategorySubLevel;// @"SolutionOpenPopUp.txt"; 
+        //    }
+        //}
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show ReadMe.txt from root of solution when opening solution")]
-        [Description("Set to true so that the content of a file named 'ReadMe.txt' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
+        [DisplayName("Show " + CommonConstants.ReadMeDotTxt + " from root of solution when opening solution")]
+        [Description("Set to true so that the content of a file named '" + CommonConstants.ReadMeDotTxt + "' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
         public bool ShowReadMeDotTxt { get; set; } = true;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show SolutionOpenPopUp.txt from root of solution when opening solution")]
-        [Description("Set to true so that the content of a file named 'SolutionOpenPopUp.txt' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
+        [DisplayName("Show " + CommonConstants.SolutionOpenPopUpDotTxt + " from root of solution when opening solution")]
+        [Description("Set to true so that the content of a file named '" + CommonConstants.SolutionOpenPopUpDotTxt + "' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
         public bool ShowSolutionOpenPopUpDotTxt { get; set; } = true;
-
-
 
         ////public override void LoadSettingsFromStorage()
         ////{

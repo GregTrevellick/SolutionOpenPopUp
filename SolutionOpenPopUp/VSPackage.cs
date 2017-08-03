@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Runtime.InteropServices;
+using SolutionOpenPopUp.Helpers;
 
 namespace SolutionOpenPopUp
 {
@@ -41,11 +42,11 @@ namespace SolutionOpenPopUp
             var solutionPath = dte.Solution.FullName;
             var solutionFolder = Path.GetDirectoryName(solutionPath);
 
-            var solutionOpenPopUpDotTxt = GetSolutionOpenPopUpDotTxt();
+            var solutionOpenPopUpDotTxt = CommonConstants.SolutionOpenPopUpDotTxt; 
             var textFile = Path.Combine(solutionFolder, solutionOpenPopUpDotTxt);
             textFiles.Add(textFile);
 
-            var readMeDotTxt = GetReadMeDotTxt();
+            var readMeDotTxt = CommonConstants.ReadMeDotTxt; 
             textFile = Path.Combine(solutionFolder, readMeDotTxt);
             textFiles.Add(textFile);
             
@@ -130,16 +131,16 @@ namespace SolutionOpenPopUp
             }
         }
 
-        private string GetReadMeDotTxt()
-        {
-            var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-            return generalOptions.ReadMeDotTxt;
-        }
+        //private string GetReadMeDotTxt()
+        //{
+        //    var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
+        //    return generalOptions.ReadMeDotTxt;
+        //}
 
-        private string GetSolutionOpenPopUpDotTxt()
-        {
-            var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-            return generalOptions.SolutionOpenPopUpDotTxt;
-        }
+        //private string GetSolutionOpenPopUpDotTxt()
+        //{
+        //    var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
+        //    return generalOptions.SolutionOpenPopUpDotTxt;
+        //}
     }
 }

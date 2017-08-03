@@ -9,24 +9,26 @@ namespace SolutionOpenPopUp.Helpers
             return $"The file {missingFileName} does not exist.";
         }
 
-        public static string PromptForActualExeFile(string missingFileName)
+        public static string PromptForActualFile(string missingFileName)
         {
             return InformUserMissingFile(missingFileName)
-                + Environment.NewLine + Environment.NewLine
-                + "Do you want to browse the for the file ?"
-                + Environment.NewLine + Environment.NewLine
-                + "Click YES to locate the file, NO to save anyway.";
+                   + Environment.NewLine + Environment.NewLine
+                   + "Do you want to browse the for the file ?"
+                   + Environment.NewLine + Environment.NewLine
+                   + "Click YES to locate the file, NO to save anyway.";
         }
 
         public const string CategorySubLevel = "General";
+        public const string ReadMeDotTxt = "ReadMe.txt";
+        public const string SolutionOpenPopUpDotTxt = "SolutionOpenPopUp.txt";
     }
 }
 
 
 
+
 //public const string ActualPathToExeOptionDetailedDescription = "Specify the absolute install path for the application.";
 //public const string ActualPathToExeOptionLabelPrefix = "Application path to ";
-//public const string CategorySubLevel = "General";
 //public static string ContinueAnyway = "Click OK to open anyway, or CANCEL to return to Visual Studio.";
 //public const string DefaultFileQuantityWarningLimit = "10";
 //public static string FileQuantityWarningLimitInvalid = "Invalid integer value specified for:" + Environment.NewLine + Environment.NewLine + FileQuantityWarningLimitOptionLabel;
