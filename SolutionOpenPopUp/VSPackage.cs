@@ -21,6 +21,7 @@ namespace SolutionOpenPopUp
         private DTE dte;
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
+        private string bulletPoint = " - ";
 
         public VSPackage()
         {
@@ -38,21 +39,28 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
+            popUpFooter = string.Empty;
+
             var textFiles = new List<string>();
 
             var solutionPath = dte.Solution.FullName;
             var solutionFolder = Path.GetDirectoryName(solutionPath);
 
-            var solutionOpenPopUpDotTxt = CommonConstants.SolutionOpenPopUpDotTxt; 
-            var textFile = Path.Combine(solutionFolder, solutionOpenPopUpDotTxt);
-            textFiles.Add(textFile);
+            if (ShowSolutionOpenPopUpDotTxt)
+            {
+                var solutionOpenPopUpDotTxt = CommonConstants.SolutionOpenPopUpDotTxt;
+                var textFile = Path.Combine(solutionFolder, solutionOpenPopUpDotTxt);
+                textFiles.Add(textFile);
+            }
 
-            var readMeDotTxt = CommonConstants.ReadMeDotTxt; 
-            textFile = Path.Combine(solutionFolder, readMeDotTxt);
-            textFiles.Add(textFile);
-            
+            if (ShowReadMeDotTxt)
+            {
+                var readMeDotTxt = CommonConstants.ReadMeDotTxt;
+                var textFile = Path.Combine(solutionFolder, readMeDotTxt);
+                textFiles.Add(textFile);
+            }
+
             var popUpBody = GetPopUpBody(textFiles);
-            //var popUpTitle = Vsix.Name + " " + Vsix.Version;
 
             DisplayPopUpMessage(string.Empty, popUpBody);
         }
@@ -69,8 +77,12 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(popUpFooter))
             {
-                result += "ABOUT: " + Vsix.Name + " " + Vsix.Version;
+                result += "ABOUT";
                 result += Environment.NewLine;
+                result += bulletPoint + Vsix.Name + " " + Vsix.Version;
+                result += Environment.NewLine;
+                var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
+                result += bulletPoint + url;
                 result += Environment.NewLine;
                 result += popUpFooter;
             }            
@@ -102,14 +114,12 @@ namespace SolutionOpenPopUp
                     result += Environment.NewLine;
 
                     var sourceControlStatus = fileIsUnderSourceControl ? "IS" : "is NOT";
-                    popUpFooter += textFile + " (file " + sourceControlStatus + " under source control)";
-                    popUpFooter += Environment.NewLine;
+                    popUpFooter += bulletPoint + textFile + " (file " + sourceControlStatus + " under source control)";
                     popUpFooter += Environment.NewLine;
                 }
                 else
                 {
-                    popUpFooter += textFile + " not be found.";
-                    popUpFooter += Environment.NewLine;
+                    popUpFooter += bulletPoint + textFile + " not be found.";
                     popUpFooter += Environment.NewLine;
                 }
 
@@ -141,11 +151,23 @@ namespace SolutionOpenPopUp
                     out result);
             }
         }
+            
+        private bool ShowSolutionOpenPopUpDotTxt
+        {
+            get
+            {
+                var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
+                return generalOptions.ShowSolutionOpenPopUpDotTxt;
+            }
+        }
 
-        //private string GetCustomFileDotTxt()
-        //{
-        //    var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-        //    return generalOptions.CustomFileDotTxt;
-        //}
+        private bool ShowReadMeDotTxt
+        {
+            get
+            {
+                var generalOptions = (GeneralOptions) GetDialogPage(typeof(GeneralOptions));
+                return generalOptions.ShowReadMeDotTxt;
+            }
+        }
     }
 }
