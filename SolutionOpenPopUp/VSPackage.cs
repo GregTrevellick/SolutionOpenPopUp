@@ -52,9 +52,9 @@ namespace SolutionOpenPopUp
             textFiles.Add(textFile);
             
             var popUpBody = GetPopUpBody(textFiles);
-            var popUpTitle = Vsix.Name + " " + Vsix.Version;
+            //var popUpTitle = Vsix.Name + " " + Vsix.Version;
 
-            DisplayPopUpMessage(popUpTitle, popUpBody);
+            DisplayPopUpMessage(string.Empty, popUpBody);
         }
 
         private string GetPopUpBody(IEnumerable<string> textFiles)
@@ -69,8 +69,9 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(popUpFooter))
             {
-                //result += Environment.NewLine;
-                result += "Source(s):";
+                result += "ABOUT: " + Vsix.Name + " " + Vsix.Version;
+                result += Environment.NewLine;
+                result += Environment.NewLine;
                 result += popUpFooter;
             }            
 
@@ -99,20 +100,20 @@ namespace SolutionOpenPopUp
                     }
 
                     result += Environment.NewLine;
-                   // result += Environment.NewLine;
 
                     var sourceControlStatus = fileIsUnderSourceControl ? "IS" : "is NOT";
                     popUpFooter += textFile + " (file " + sourceControlStatus + " under source control)";
-                    result += Environment.NewLine;
-                    result += Environment.NewLine;
+                    popUpFooter += Environment.NewLine;
+                    popUpFooter += Environment.NewLine;
                 }
                 else
                 {
-                    result += "The file " + textFile + " cannnot be found.";
+                    popUpFooter += textFile + " not be found.";
+                    popUpFooter += Environment.NewLine;
+                    popUpFooter += Environment.NewLine;
                 }
 
                 result += Environment.NewLine;
-                //result += Environment.NewLine;
             }
 
             return result;
