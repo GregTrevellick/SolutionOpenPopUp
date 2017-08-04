@@ -24,8 +24,8 @@ namespace SolutionOpenPopUp
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
         private string bulletPoint = " - ";
-        private int textLimit = 2000;//gregt put into options
-        private int lineLengthTruncationLimit = 20;//gregt put into options
+        //TODO private int textLimit = 2000;//gregt put into options
+        //TODO private int lineLengthTruncationLimit = 20;//gregt put into options
         private string solutionFolder;
         private List<TextFileDto> textFileDtos = new List<TextFileDto>();
 
@@ -53,6 +53,8 @@ namespace SolutionOpenPopUp
 
             var popUpBody = GetPopUpBody(textFileDtos);
 
+            popUpBody = SetPopUpFooter(popUpBody);//gregt bit smelly here
+
             DisplayPopUpMessage(string.Empty, popUpBody);
         }
 
@@ -76,27 +78,23 @@ namespace SolutionOpenPopUp
 
         private string GetPopUpBody(IEnumerable<TextFileDto> textFileDtos)
         {
-            var result = string.Empty;
-            
+            var popUpBody = string.Empty;
+
             foreach (var textFileDto in textFileDtos)
             {
-                var textFileIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(textFileDto.FileName);
-                result += GetPopUpMessage(textFileDto.FileName, textFileIsUnderSourceControl);
+                ReadAllLines(textFileDto);
+                //TODO CalculateLinesToShow(textFileDto, textLimit);
+                popUpBody += GetPopUpMessage(textFileDto);
             }
 
-            result = SetPopUpFooter(result);            
-
-            return result;
+            return popUpBody;
         }
 
-        private string GetPopUpMessage(string textFile, bool fileIsUnderSourceControl)
+        private void ReadAllLines(TextFileDto textFileDto)
         {
-            var result = string.Empty;
-
-            if (!string.IsNullOrEmpty(textFile))
+            if (!string.IsNullOrEmpty(textFileDto.FileName))
             {
-
-                if (File.Exists(textFile))
+                if (File.Exists(textFileDto.FileName))
                 {
                     //var text = File.ReadAllText(textFile);
 
@@ -108,27 +106,36 @@ namespace SolutionOpenPopUp
                     //{
                     //    result += text;
                     //}
+                    textFileDto.FileExists = true;
+                    textFileDto.AllLines = File.ReadAllLines(textFileDto.FileName);
+                    textFileDto.SourceControlStatus = dte.SourceControl.IsItemUnderSCC(textFileDto.FileName);
+                }
+                else
+                {
+                    textFileDto.FileExists = false;
+                }
+            }
+            else
+            {
+                textFileDto.FileExists = false;
+            }
+        }
 
-                    var text = File.ReadAllLines(textFile);
-                    var linesLimit = 3;
+        private string GetPopUpMessage(TextFileDto textFileDto)
+        {
+            var result = string.Empty;
 
-                    if (text.Length > linesLimit)
-                    {
-                        result += text.Take(linesLimit);
-                    }
-                    else
-                    {
-                        result += text;
-                    }
-
-
-                    var sourceControlStatus = fileIsUnderSourceControl ? "is" : "is not";
-                    popUpFooter += bulletPoint + textFile + " (file " + sourceControlStatus + " under source control)";
+            if (!string.IsNullOrEmpty(textFileDto.FileName))
+            {
+                if (textFileDto.FileExists)
+                {
+                    var sourceControlStatus = textFileDto.SourceControlStatus ? "is" : "is not";
+                    popUpFooter += bulletPoint + textFileDto + " (file " + sourceControlStatus + " under source control)";
                     popUpFooter += Environment.NewLine;
                 }
                 else
                 {
-                    popUpFooter += bulletPoint + textFile + " not found.";
+                    popUpFooter += bulletPoint + textFileDto + " not found.";
                     popUpFooter += Environment.NewLine;
                 }
 
