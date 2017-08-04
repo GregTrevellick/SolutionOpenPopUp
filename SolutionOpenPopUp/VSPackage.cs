@@ -24,8 +24,8 @@ namespace SolutionOpenPopUp
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
         private string bulletPoint = " - ";
-        //TODO private int textLimit = 2000;//gregt put into options
-        //TODO private int lineLengthTruncationLimit = 20;//gregt put into options
+        private int overallLinesLimit = 10;//gregt put into options
+        private int lineLengthTruncationLimit = 20;//gregt put into options
         private string solutionFolder;
         private List<TextFileDto> textFileDtos = new List<TextFileDto>();
 
@@ -83,7 +83,13 @@ namespace SolutionOpenPopUp
             foreach (var textFileDto in textFileDtos)
             {
                 ReadAllLines(textFileDto);
-                //TODO CalculateLinesToShow(textFileDto, textLimit);
+                TruncateAllLines(textFileDto.AllLines, lineLengthTruncationLimit);
+            }
+
+            CalculateLinesToShow(textFileDtos, overallLinesLimit);
+
+            foreach (var textFileDto in textFileDtos)
+            {
                 popUpBody += GetPopUpMessage(textFileDto);
             }
 
@@ -118,6 +124,21 @@ namespace SolutionOpenPopUp
             else
             {
                 textFileDto.FileExists = false;
+            }
+        }
+
+        private void CalculateLinesToShow(IEnumerable<TextFileDto> textFileDtos, int overallLinesLimit)
+        {
+            foreach (var textFileDto in textFileDtos)
+            {
+                if (textFileDto.AllLines.Length > overallLinesLimit)
+                {
+                    textFileDto.MaxLinesToShow = 3;//TODO calculater this properly
+                }
+                else
+                {
+                    textFileDto.MaxLinesToShow = textFileDto.AllLines.Length;
+                }    
             }
         }
 
