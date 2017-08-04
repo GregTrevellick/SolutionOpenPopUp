@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
+using SolutionOpenPopUp.Helpers.Dtos;
 
 namespace SolutionOpenPopUp
 {
@@ -22,6 +24,10 @@ namespace SolutionOpenPopUp
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
         private string bulletPoint = " - ";
+        private int textLimit = 2000;//gregt put into options
+        private int lineLengthTruncationLimit = 20;//gregt put into options
+        private string solutionFolder;
+        private List<TextFileDto> textFileDtos = new List<TextFileDto>();
 
         public VSPackage()
         {
@@ -41,51 +47,44 @@ namespace SolutionOpenPopUp
         {
             popUpFooter = string.Empty;
 
-            var textFiles = new List<string>();
+            SolutionOpenPopUpDotTxtHandler();
 
-            var solutionPath = dte.Solution.FullName;
-            var solutionFolder = Path.GetDirectoryName(solutionPath);
+            ShowReadMeDotTxtHandler();
 
-            if (ShowSolutionOpenPopUpDotTxt)
-            {
-                var solutionOpenPopUpDotTxt = CommonConstants.SolutionOpenPopUpDotTxt;
-                var textFile = Path.Combine(solutionFolder, solutionOpenPopUpDotTxt);
-                textFiles.Add(textFile);
-            }
-
-            if (ShowReadMeDotTxt)
-            {
-                var readMeDotTxt = CommonConstants.ReadMeDotTxt;
-                var textFile = Path.Combine(solutionFolder, readMeDotTxt);
-                textFiles.Add(textFile);
-            }
-
-            var popUpBody = GetPopUpBody(textFiles);
+            var popUpBody = GetPopUpBody(textFileDtos);
 
             DisplayPopUpMessage(string.Empty, popUpBody);
         }
 
-        private string GetPopUpBody(IEnumerable<string> textFiles)
+        private void ShowReadMeDotTxtHandler()
+        {
+            if (GeneralOptionsDto.ShowReadMeDotTxt)
+            {
+                var textFile = Path.Combine(SolutionFolder, CommonConstants.ReadMeDotTxt);
+                textFileDtos.Add(new TextFileDto {FileName = textFile});
+            }
+        }
+
+        private void SolutionOpenPopUpDotTxtHandler()
+        {
+            if (GeneralOptionsDto.ShowSolutionOpenPopUpDotTxt)
+            {
+                var textFile = Path.Combine(SolutionFolder, CommonConstants.SolutionOpenPopUpDotTxt);
+                textFileDtos.Add(new TextFileDto {FileName = textFile});
+            }
+        }
+
+        private string GetPopUpBody(IEnumerable<TextFileDto> textFileDtos)
         {
             var result = string.Empty;
             
-            foreach (var textFile in textFiles)
+            foreach (var textFileDto in textFileDtos)
             {
-                var textFileIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(textFile);
-                result += GetPopUpMessage(textFile, textFileIsUnderSourceControl);
+                var textFileIsUnderSourceControl = dte.SourceControl.IsItemUnderSCC(textFileDto.FileName);
+                result += GetPopUpMessage(textFileDto.FileName, textFileIsUnderSourceControl);
             }
 
-            if (!string.IsNullOrEmpty(popUpFooter))
-            {
-                result += "ABOUT";
-                result += Environment.NewLine;
-                result += bulletPoint + Vsix.Name + " " + Vsix.Version;
-                result += Environment.NewLine;
-                var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
-                result += bulletPoint + url;
-                result += Environment.NewLine;
-                result += popUpFooter;
-            }            
+            result = SetPopUpFooter(result);            
 
             return result;
         }
@@ -96,24 +95,34 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(textFile))
             {
-                var textLimit = 2000;//gregt put into options
 
                 if (File.Exists(textFile))
                 {
-                    var text = File.ReadAllText(textFile);
+                    //var text = File.ReadAllText(textFile);
 
-                    if (text.Length > textLimit)
+                    //if (text.Length > textLimit)
+                    //{
+                    //    result += text.Substring(0, textLimit);
+                    //}
+                    //else
+                    //{
+                    //    result += text;
+                    //}
+
+                    var text = File.ReadAllLines(textFile);
+                    var linesLimit = 3;
+
+                    if (text.Length > linesLimit)
                     {
-                        result += text.Substring(0, textLimit);
+                        result += text.Take(linesLimit);
                     }
                     else
                     {
                         result += text;
                     }
 
-                    result += Environment.NewLine;
 
-                    var sourceControlStatus = fileIsUnderSourceControl ? "is" : "is NOT";
+                    var sourceControlStatus = fileIsUnderSourceControl ? "is" : "is not";
                     popUpFooter += bulletPoint + textFile + " (file " + sourceControlStatus + " under source control)";
                     popUpFooter += Environment.NewLine;
                 }
@@ -124,6 +133,24 @@ namespace SolutionOpenPopUp
                 }
 
                 result += Environment.NewLine;
+            }
+
+            return result;
+        }
+
+        private string SetPopUpFooter(string result)
+        {
+            if (!string.IsNullOrEmpty(popUpFooter))
+            {
+                result += Environment.NewLine;
+                result += "ABOUT";
+                result += Environment.NewLine;
+                result += bulletPoint + Vsix.Name + " " + Vsix.Version;
+                result += Environment.NewLine;
+                var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
+                result += bulletPoint + url;
+                result += Environment.NewLine;
+                result += popUpFooter;
             }
 
             return result;
@@ -151,23 +178,31 @@ namespace SolutionOpenPopUp
                     out result);
             }
         }
-            
-        private bool ShowSolutionOpenPopUpDotTxt
+
+        private GeneralOptionsDto GeneralOptionsDto
         {
             get
             {
                 var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
-                return generalOptions.ShowSolutionOpenPopUpDotTxt;
+                return new GeneralOptionsDto
+                {
+                    ShowSolutionOpenPopUpDotTxt = generalOptions.ShowSolutionOpenPopUpDotTxt,
+                    ShowReadMeDotTxt = generalOptions.ShowReadMeDotTxt
+                };
             }
         }
 
-        private bool ShowReadMeDotTxt
+        private string SolutionFolder
         {
             get
             {
-                var generalOptions = (GeneralOptions) GetDialogPage(typeof(GeneralOptions));
-                return generalOptions.ShowReadMeDotTxt;
+                if (string.IsNullOrEmpty(solutionFolder))
+                {
+                    var solutionPath = dte.Solution.FullName;
+                    solutionFolder = Path.GetDirectoryName(solutionPath);
+                }
+                return solutionFolder;
             }
-        }
+        } 
     }
 }

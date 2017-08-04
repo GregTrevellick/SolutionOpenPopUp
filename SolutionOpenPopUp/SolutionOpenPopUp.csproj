@@ -80,6 +80,8 @@
     <Compile Include="Helpers\BrowseFileHelper.cs" />
     <Compile Include="Helpers\CommonConstants.cs" />
     <Compile Include="Helpers\Dtos\FileBrowseOutcomeDto.cs" />
+    <Compile Include="Helpers\Dtos\GeneralOptionsDto.cs" />
+    <Compile Include="Helpers\Dtos\TextFileDto.cs" />
     <Compile Include="Helpers\Dtos\PersistOptionsDto.cs" />
     <Compile Include="Helpers\FilePrompterHelper.cs" />
     <Compile Include="Options\GeneralOptions.cs">
