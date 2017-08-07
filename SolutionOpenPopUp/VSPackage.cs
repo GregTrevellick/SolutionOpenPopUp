@@ -105,16 +105,6 @@ namespace SolutionOpenPopUp
             {
                 if (File.Exists(textFileDto.FileName))
                 {
-                    //var text = File.ReadAllText(textFile);
-
-                    //if (text.Length > textLimit)
-                    //{
-                    //    result += text.Substring(0, textLimit);
-                    //}
-                    //else
-                    //{
-                    //    result += text;
-                    //}
                     textFileDto.FileExists = true;
                     textFileDto.AllLines = File.ReadAllLines(textFileDto.FileName);
                     textFileDto.SourceControlStatus = dte.SourceControl.IsItemUnderSCC(textFileDto.FileName);
