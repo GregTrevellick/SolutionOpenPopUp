@@ -9,6 +9,7 @@ using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Xml.XPath;
 using SolutionOpenPopUp.Helpers.Dtos;
 
@@ -28,7 +29,7 @@ namespace SolutionOpenPopUp
         private int overallLinesLimit = 3;//gregt put into options
         private int lineLengthTruncationLimit = 5;//gregt put into options
         private string solutionFolder;
-        private List<TextFileDto> textFileDtos = new List<TextFileDto>();
+        private List<TextFileDto> textFileDtos;
 
         public VSPackage()
         {
@@ -46,6 +47,7 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
+            textFileDtos = new List<TextFileDto>();
             popUpFooter = string.Empty;
 
             SolutionOpenPopUpDotTxtHandler();
@@ -86,7 +88,7 @@ namespace SolutionOpenPopUp
             foreach (var textFileDto in textFileDtos)
             {
                 ReadAllLines(textFileDto);
-                PackageHelper.TruncateAllIndividualLines(textFileDto.AllLines, lineLengthTruncationLimit);
+                textFileDto.AllLines = PackageHelper.GetTruncatedIndividualLines(textFileDto.AllLines, lineLengthTruncationLimit);
             }
 
             PackageHelper.CalculateOverallLinesToShow(textFileDtos, overallLinesLimit);
@@ -98,26 +100,7 @@ namespace SolutionOpenPopUp
 
             return popUpBody;
         }
-
-        //private void TruncateAllIndividualLines(string[] allLines, int lineLengthTruncationLimit)
-        //{
-        //    var allTruncatedLines = new List<string>();
-
-        //    foreach (var line in allLines)
-        //    {
-        //        if (line.Length > lineLengthTruncationLimit)
-        //        {
-        //            allTruncatedLines.Add(line.Substring(1, lineLengthTruncationLimit) + "...");
-        //        }
-        //        else
-        //        {
-        //            allTruncatedLines.Add(line);
-        //        }
-        //    }
-
-        //    allLines = allTruncatedLines.ToArray();
-        //}
-
+    
         private void ReadAllLines(TextFileDto textFileDto)
         {
             if (!string.IsNullOrEmpty(textFileDto.FileName))
@@ -149,21 +132,6 @@ namespace SolutionOpenPopUp
             }
         }
 
-        //private void CalculateOverallLinesToShow(IEnumerable<TextFileDto> textFileDtos, int overallLinesLimit)
-        //{
-        //    foreach (var textFileDto in textFileDtos)
-        //    {
-        //        if (textFileDto.AllLines.Length > overallLinesLimit)
-        //        {
-        //            textFileDto.MaxLinesToShow = 3;//TODO calculater this properly as a %
-        //        }
-        //        else
-        //        {
-        //            textFileDto.MaxLinesToShow = textFileDto.AllLines.Length;
-        //        }    
-        //    }
-        //}
-
         private string GetPopUpMessage(TextFileDto textFileDto)
         {
             var result = string.Empty;
@@ -172,7 +140,9 @@ namespace SolutionOpenPopUp
             {
                 if (textFileDto.FileExists)
                 {
-                    result += textFileDto.AllLines.Take(textFileDto.MaxLinesToShow);
+                    var linesToUse = textFileDto.AllLines.Take(textFileDto.MaxLinesToShow);
+                    var linesToUseJoined = string.Join(Environment.NewLine, linesToUse);
+                    result += linesToUseJoined;
 
                     var sourceControlStatus = textFileDto.SourceControlStatus ? "is" : "is not";
                     popUpFooter += bulletPoint + textFileDto + " (file " + sourceControlStatus + " under source control)";
@@ -255,6 +225,6 @@ namespace SolutionOpenPopUp
                 }
                 return solutionFolder;
             }
-        } 
+        }
     }
 }

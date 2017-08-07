@@ -5,7 +5,7 @@ namespace SolutionOpenPopUp.Helpers
 {
     public class PackageHelper
     {
-        public static void TruncateAllIndividualLines(string[] allLines, int lineLengthTruncationLimit)
+        public static string[] GetTruncatedIndividualLines(string[] allLines, int lineLengthTruncationLimit)
         {
             var allTruncatedLines = new List<string>();
 
@@ -13,7 +13,7 @@ namespace SolutionOpenPopUp.Helpers
             {
                 if (line.Length > lineLengthTruncationLimit)
                 {
-                    allTruncatedLines.Add(line.Substring(1, lineLengthTruncationLimit) + "...");
+                    allTruncatedLines.Add(line.Substring(0, lineLengthTruncationLimit) + "...");
                 }
                 else
                 {
@@ -21,7 +21,7 @@ namespace SolutionOpenPopUp.Helpers
                 }
             }
 
-            allLines = allTruncatedLines.ToArray();
+            return allTruncatedLines.ToArray();
         }
 
         public static void CalculateOverallLinesToShow(IEnumerable<TextFileDto> textFileDtos, int overallLinesLimit)

@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-//using SolutionOpenPopUp..Helpers;
+//using SolutionOpenPopUp.Helpers;
 
 
 namespace SolutionOpenPopUp.Tests
@@ -11,7 +11,8 @@ namespace SolutionOpenPopUp.Tests
         public void Test1()
         {
 
-          //  PackageHelper.
+  //          SolutionOpenPopUp.
+
        }
     }
 }
