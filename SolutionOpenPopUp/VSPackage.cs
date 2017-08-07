@@ -56,7 +56,7 @@ namespace SolutionOpenPopUp
 
             var popUpBody = GetPopUpBody(textFileDtos);
 
-            popUpBody = SetPopUpFooter(popUpBody);//gregt bit smelly here
+            popUpBody += GetPopUpFooter();
 
             DisplayPopUpMessage(string.Empty, popUpBody);
         }
@@ -148,8 +148,10 @@ namespace SolutionOpenPopUp
             return result;
         }
 
-        private string SetPopUpFooter(string result)
+        private string GetPopUpFooter()
         {
+            string result = null;
+
             if (!string.IsNullOrEmpty(popUpFooter))
             {
                 result += Environment.NewLine;
