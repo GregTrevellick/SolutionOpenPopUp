@@ -57,6 +57,7 @@ namespace SolutionOpenPopUp
             var popUpBody = GetPopUpBody(textFileDtos);
 
             popUpBody += GetPopUpFooter();
+            //var popUpTitle = Vsix.Name + " " + Vsix.Version;
 
             DisplayPopUpMessage(string.Empty, popUpBody);
         }
@@ -130,10 +131,11 @@ namespace SolutionOpenPopUp
                 {
                     var linesToUse = textFileDto.AllLines.Take(textFileDto.MaxLinesToShow);
                     var linesToUseJoined = string.Join(Environment.NewLine, linesToUse);
+                    linesToUseJoined.TrimPrefix(Environment.NewLine);
                     result += linesToUseJoined;
 
                     var sourceControlStatus = textFileDto.SourceControlStatus ? "is" : "is not";
-                    popUpFooter += bulletPoint + textFileDto + " (file " + sourceControlStatus + " under source control)";
+                    popUpFooter += bulletPoint + textFileDto.FileName + " (file " + sourceControlStatus + " under source control)";
                     popUpFooter += Environment.NewLine;
                 }
                 else
@@ -142,6 +144,7 @@ namespace SolutionOpenPopUp
                     popUpFooter += Environment.NewLine;
                 }
 
+                result += Environment.NewLine;
                 result += Environment.NewLine;
             }
 
@@ -154,14 +157,15 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(popUpFooter))
             {
-                result += Environment.NewLine;
-                result += "ABOUT";
-                result += Environment.NewLine;
-                result += bulletPoint + Vsix.Name + " " + Vsix.Version;
-                result += Environment.NewLine;
-                var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
-                result += bulletPoint + url;
-                result += Environment.NewLine;
+             //   result += Environment.NewLine;
+              //  result += "ABOUT";
+              //  result += Environment.NewLine;
+                var shortUrl = "https://goo.gl/aGVjJ8";
+                result +=  Vsix.Name + "   " + Vsix.Version + "   " + shortUrl;
+               result += Environment.NewLine;
+              //  var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
+               // result += bulletPoint + url;
+              //  result += Environment.NewLine;
                 result += popUpFooter;
             }
 
