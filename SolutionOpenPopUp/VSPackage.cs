@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using SolutionOpenPopUp.Helpers;
+using SolutionOpenPopUp.Helpers.Dtos;
 using SolutionOpenPopUp.Options;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,6 @@ using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Xml.XPath;
-using SolutionOpenPopUp.Helpers.Dtos;
 
 namespace SolutionOpenPopUp
 {
@@ -57,7 +55,6 @@ namespace SolutionOpenPopUp
             var popUpBody = GetPopUpBody(textFileDtos);
 
             popUpBody += GetPopUpFooter();
-            //var popUpTitle = Vsix.Name + " " + Vsix.Version;
 
             DisplayPopUpMessage(string.Empty, popUpBody);
         }
@@ -157,15 +154,10 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(popUpFooter))
             {
-             //   result += Environment.NewLine;
-              //  result += "ABOUT";
-              //  result += Environment.NewLine;
                 var shortUrl = "https://goo.gl/aGVjJ8";
                 result +=  Vsix.Name + "   " + Vsix.Version + "   " + shortUrl;
-               result += Environment.NewLine;
-              //  var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
-               // result += bulletPoint + url;
-              //  result += Environment.NewLine;
+                result += Environment.NewLine;
+                //var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
                 result += popUpFooter;
             }
 

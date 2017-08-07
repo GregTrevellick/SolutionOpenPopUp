@@ -8,7 +8,7 @@ namespace SolutionOpenPopUp
     static class Vsix
     {
         public const string Id = "9ea776a6-e317-4ba8-a957-fa59958ec214";
-        public const string Name = "SolutionOpenPopUp";
+        public const string Name = "Solution Open Pop Up";
         public const string Description = @"This extension will open a pop-up dialog containing the contents of a specific text file in a solution, when the solution is opened.
 ";
         public const string Language = "en-US";
