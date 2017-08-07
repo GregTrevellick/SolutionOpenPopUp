@@ -26,6 +26,8 @@ namespace SolutionOpenPopUp
         private string bulletPoint = " - ";
         private int overallLinesLimit = 35;//gregt put into options
         private int lineLengthTruncationLimit = 100;//gregt put into options
+        //custom file
+        //include about info => true
         private string solutionFolder;
         private List<TextFileDto> textFileDtos;
 
