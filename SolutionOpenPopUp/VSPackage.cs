@@ -26,8 +26,8 @@ namespace SolutionOpenPopUp
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
         private string bulletPoint = " - ";
-        private int overallLinesLimit = 3;//gregt put into options
-        private int lineLengthTruncationLimit = 5;//gregt put into options
+        private int overallLinesLimit = 5;//gregt put into options
+        private int lineLengthTruncationLimit = 15;//gregt put into options
         private string solutionFolder;
         private List<TextFileDto> textFileDtos;
 
