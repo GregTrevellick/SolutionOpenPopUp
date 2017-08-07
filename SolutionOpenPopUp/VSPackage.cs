@@ -154,10 +154,10 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(popUpFooter))
             {
+                //var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
                 var shortUrl = "https://goo.gl/aGVjJ8";
                 result +=  Vsix.Name + "   " + Vsix.Version + "   " + shortUrl;
                 result += Environment.NewLine;
-                //var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
                 result += popUpFooter;
             }
 
