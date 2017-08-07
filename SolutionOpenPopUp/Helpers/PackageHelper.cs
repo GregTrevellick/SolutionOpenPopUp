@@ -35,7 +35,7 @@ namespace SolutionOpenPopUp.Helpers
                 var a = textFileDto.AllLines.Length /(double) allLinesTotal;
                 var b = a * overallLinesLimit;
                 var c = (int) Math.Round(b);
-                textFileDto.MaxLinesToShow =c ;
+                textFileDto.MaxLinesToShow = c;
             }
         }      
     }
