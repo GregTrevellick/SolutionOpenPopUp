@@ -83,8 +83,6 @@ namespace SolutionOpenPopUp
         {
             var popUpBody = string.Empty;
 
-          //  var packageHelper = new PackageHelper();
-
             foreach (var textFileDto in textFileDtos)
             {
                 ReadAllLines(textFileDto);
