@@ -23,15 +23,17 @@ Download this extension from the [VS Marketplace][VSMarketplaceUrl].
 
 <!--COPY START FOR VS GALLERY-->
 
-This [Visual Studio][VisualStudioUrl] extension will open a pop-up dialog containing the contents of a specific text file in a solution, when the solution is opened.
+Display the content of one or more text files in a pop-up window when opening a solution. A handy way to share solution-specific gotchas, non-critical solution-specific messages within a team, your own personal comments about a solution, and more. 
 
- - *If you like this ***free*** tool please take a few seconds out to give a star rating below*.
+ - *If you like this ***free*** extension please give a star rating below, it only takes a few seconds*.
 
 ## Use-Cases
 
- - Your source-control system freakishly doesn't retained a file's modifications, and so every time you open a new branch of your solution you need to manually and repeatedly make the same changes to address this. *This was the real-life problem I experienced that inspired me to create this extension.*
- 
- - Many more. *If you have a use-case you would like listed here, just let me know via a review on the [VS Gallery][VSMarketplaceReviewsUrl].*
+ - Xxxxxxxxxxxxxx. 
+
+ - Xxxxxxxxxxxxxx.
+
+ - Xxxxxxxxxxxxxx.
  
 ## Features
 
