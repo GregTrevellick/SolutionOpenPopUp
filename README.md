@@ -65,4 +65,4 @@ The following authors / articles deserve special mention for their help whilst c
 
 [Sho Sato](https://vsmarketplacebadge.apphb.com/)
 
-[![](chart.png)][VSMarketplaceUrl]
+[![](./chart.png)][VSMarketplaceUrl]

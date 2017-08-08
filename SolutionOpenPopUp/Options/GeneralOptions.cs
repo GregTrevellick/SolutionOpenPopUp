@@ -7,12 +7,12 @@ namespace SolutionOpenPopUp.Options
     public class GeneralOptions : DialogPage
     {
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show " + CommonConstants.ReadMeDotTxt + " from root of solution when opening solution")]
+        [DisplayName("Show " + CommonConstants.ReadMeDotTxt + " (from solution root) when opening solution")]
         [Description("Set to true so that the content of a file named '" + CommonConstants.ReadMeDotTxt + "' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
         public bool ShowReadMeDotTxt { get; set; } = true;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show " + CommonConstants.SolutionOpenPopUpDotTxt + " from root of solution when opening solution")]
+        [DisplayName("Show " + CommonConstants.SolutionOpenPopUpDotTxt + " (from solution root) when opening solution")]
         [Description("Set to true so that the content of a file named '" + CommonConstants.SolutionOpenPopUpDotTxt + "' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
         public bool ShowSolutionOpenPopUpDotTxt { get; set; } = true;
 
