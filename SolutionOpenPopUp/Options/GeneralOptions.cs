@@ -39,17 +39,17 @@ namespace SolutionOpenPopUp.Options
         //}
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Overall maxiumum number of lines of all text files combined")]
-        [Description("gregt")]
+        [DisplayName("Maxiumum lines for all text files")]
+        [Description("The overall maxiumum number of lines to show in the pop-up for all text files combined. When more than one text file is displayed, the contents are shown pro-rata within this limit.")]
         public int OverallLinesLimit { get; set; } = 35;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Point at which long text lines should be truncated")]
-        [Description("gregt")]
+        [DisplayName("Long lines truncation point")]
+        [Description("The truncation point at which long text lines should be truncated, rather than eat up huge amounts of real-estate.")]
         public int LineLengthTruncationLimit { get; set; } = 100;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show file names in pop-up window")]
+        [DisplayName("Show file names in footer")]
         [Description("Show file names of the files containing content that appears in the pop-up window. Set to false to increase the amount of real-estate available for the pop-up content.")]
         public bool ShowFileNamesInPopUp { get; set; } = true;
 
