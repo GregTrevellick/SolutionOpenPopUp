@@ -29,11 +29,11 @@ Display the content of one or more text files in a pop-up window when opening a 
 
 ## Use-Cases
 
- - Xxxxxxxxxxxxxx. 
+ - We're planning to upgrade this solution to VS2017 in the next quarter, so if you haven't already please download and install VS2017
 
- - Xxxxxxxxxxxxxx.
+ - Gotcha: this solution has a build step that is dependant on a specific hard coded file path existing on your PC, without which it won't compile
 
- - Xxxxxxxxxxxxxx.
+ - This solution contains the public facing API that allows authorised customers to inject new products into the database 
  
 ## Features
 

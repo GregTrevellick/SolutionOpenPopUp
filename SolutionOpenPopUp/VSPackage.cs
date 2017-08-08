@@ -24,10 +24,10 @@ namespace SolutionOpenPopUp
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
         private string bulletPoint = " - ";
-        private int overallLinesLimit = 35;//gregt put into options
-        private int lineLengthTruncationLimit = 100;//gregt put into options
-        //custom file
-        //include about info => true
+        //private int overallLinesLimit = 35;//gregt put into options
+        //private int lineLengthTruncationLimit = 100;//gregt put into options
+        ////custom file
+        ////include about info => true
         private string solutionFolder;
         private List<TextFileDto> textFileDtos;
 
@@ -86,10 +86,10 @@ namespace SolutionOpenPopUp
             foreach (var textFileDto in textFileDtos)
             {
                 ReadAllLines(textFileDto);
-                textFileDto.AllLines = PackageHelper.GetTruncatedIndividualLines(textFileDto.AllLines, lineLengthTruncationLimit);
+                textFileDto.AllLines = PackageHelper.GetTruncatedIndividualLines(textFileDto.AllLines, GeneralOptionsDto.LineLengthTruncationLimit);
             }
 
-            PackageHelper.CalculateOverallLinesToShow(textFileDtos, overallLinesLimit);
+            PackageHelper.CalculateOverallLinesToShow(textFileDtos, GeneralOptionsDto.OverallLinesLimit);
 
             foreach (var textFileDto in textFileDtos)
             {
@@ -196,8 +196,11 @@ namespace SolutionOpenPopUp
                 var generalOptions = (GeneralOptions)GetDialogPage(typeof(GeneralOptions));
                 return new GeneralOptionsDto
                 {
+                    LineLengthTruncationLimit = generalOptions.LineLengthTruncationLimit,
+                    OverallLinesLimit = generalOptions.OverallLinesLimit,
+                    ShowFileNamesInPopUp = generalOptions.ShowFileNamesInPopUp,
+                    ShowReadMeDotTxt = generalOptions.ShowReadMeDotTxt,
                     ShowSolutionOpenPopUpDotTxt = generalOptions.ShowSolutionOpenPopUpDotTxt,
-                    ShowReadMeDotTxt = generalOptions.ShowReadMeDotTxt
                 };
             }
         }
