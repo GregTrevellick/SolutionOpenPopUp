@@ -9,7 +9,7 @@
 [VSMarketplaceReviewsUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp#review-details
 
 
-# SolutionOpenPopUp
+# Solution Open Pop Up
 
 [![Licence](https://img.shields.io/github/license/gittools/gitlink.svg)](/LICENSE.txt)
 [![Build status][AppVeyorProjectBuildStatusBadgeSvg]][AppVeyorProjectUrl]
@@ -23,13 +23,17 @@ Download this extension from the [VS Marketplace][VSMarketplaceUrl].
 
 <!--COPY START FOR VS GALLERY-->
 
-Display the content of one or more text files in a pop-up window when opening a solution. A handy way to share solution-specific gotchas, non-critical solution-specific messages within a team, your own personal comments about a solution, and more. 
+Display the contents of certain text files in a solution folder in a pop-up when the solution is opened.
+
+A handy way to share solution-specific gotchas, non-critical team messages or your own personal notes for a solution. 
 
  - *If you like this ***free*** extension please give a star rating below, it only takes a few seconds*.
 
 ## Use-Cases
 
- - We're planning to upgrade this solution to VS2017 in the next quarter, so if you haven't already please download and install VS2017
+ - You're new to a company, have made some notes on various .Net solutions, and it would be useful to see the notes pertinent to each solution whenever you open it.
+
+ - Your team is planning to upgrade this solution to VS2017 in the next quarter, so if you haven't already please download and install VS2017
 
  - Gotcha: this solution has a build step that is dependant on a specific hard coded file path existing on your PC, without which it won't compile
 

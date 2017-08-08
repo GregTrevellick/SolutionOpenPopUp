@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 	<Metadata>
-		<Identity Id="9ea776a6-e317-4ba8-a957-fa59958ec214" Version="1.0.14" Language="en-US" Publisher="Greg Trevellick" />
+		<Identity Id="9ea776a6-e317-4ba8-a957-fa59958ec214" Version="1.0.15" Language="en-US" Publisher="Greg Trevellick" />
 		<DisplayName>Solution Open Pop Up</DisplayName>
-		<Description xml:space="preserve">When specific text file(s) exist in a solution folder, their content is optionally shown in a pop-up dialog window, when the solution is opened.
+		<Description xml:space="preserve">Display the contents of certain text files in a solution folder in a pop-up when the solution is opened. A handy way to share solution-specific gotchas, non-critical team messages or your own personal notes for a solution. 
 </Description>
 		<MoreInfo>https://github.com/GregTrevellick/SolutionOpenPopUp</MoreInfo>
 		<License>LICENSE.txt</License>

@@ -9,10 +9,10 @@ namespace SolutionOpenPopUp
     {
         public const string Id = "9ea776a6-e317-4ba8-a957-fa59958ec214";
         public const string Name = "Solution Open Pop Up";
-        public const string Description = @"When specific text file(s) exist in a solution folder, their content is optionally shown in a pop-up dialog window, when the solution is opened.
+        public const string Description = @"Display the contents of certain text files in a solution folder in a pop-up when the solution is opened. A handy way to share solution-specific gotchas, non-critical team messages or your own personal notes for a solution. 
 ";
         public const string Language = "en-US";
-        public const string Version = "1.0.14";
+        public const string Version = "1.0.15";
         public const string Author = "Greg Trevellick";
         public const string Tags = "solution open, popup, pop-up, pop up, gotcha, gotchas";
     }
