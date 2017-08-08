@@ -61,8 +61,4 @@ The following authors / articles deserve special mention for their help whilst c
 
 [Slaks.Blog](http://blog.slaks.net/2013-11-10/extending-visual-studio-part-2-core-concepts/)
 
-[Daniel Schroeder](http://blog.danskingdom.com/category/visual-studio-extensions/)
-
-[Sho Sato](https://vsmarketplacebadge.apphb.com/)
-
 [![](./chart.png)][VSMarketplaceUrl]
