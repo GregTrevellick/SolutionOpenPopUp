@@ -24,10 +24,6 @@ namespace SolutionOpenPopUp
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
         private string bulletPoint = " - ";
-        //private int overallLinesLimit = 35;//gregt put into options
-        //private int lineLengthTruncationLimit = 100;//gregt put into options
-        ////custom file
-        ////include about info => true
         private string solutionFolder;
         private List<TextFileDto> textFileDtos;
 
@@ -56,7 +52,10 @@ namespace SolutionOpenPopUp
 
             var popUpBody = GetPopUpBody(textFileDtos);
 
-            popUpBody += GetPopUpFooter();
+            if (GeneralOptionsDto.ShowFileNamesInPopUp)
+            {
+                popUpBody += GetPopUpFooter();
+            }
 
             DisplayPopUpMessage(string.Empty, popUpBody);
         }
