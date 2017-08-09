@@ -31,21 +31,19 @@ A handy way to share solution-specific gotchas, non-critical team messages or yo
 
 ## Use-Cases
 
- - You're new to a company, have made some notes on various .Net solutions, and it would be useful to see the notes pertinent to each solution whenever you open it.
+ - You're new to a company, have made some notes on a .Net solution, and it would be useful to see the notes each time you open the solution.
 
- - You / your team is planning to upgrade this solution to VS2017 in the next quarter, so you want to give the coders a heads up (e.g. so that they can download and install VS2017)
+ - You are planning to upgrade a solution to VS2017 in the next quarter, and you want to give the developers a heads up whenever they open the solution.
 
- - Inform programmers about any 'gotchas' for the solution (either compilation gotchas, runtime gotchas or unit test gotchas)
+ - The solution has some 'gotchas' (e.g. compilation, runtime or unit test related) which interested parties would benefit from seeing whenever they open up the code.  
 
- - Give a brief summary of what the solution does, what its purpose is
+ - The solution is simply a proof of concept and you wish to convey this to others.
  
- - For POCs explain why it is a POC 
+ - Your solution has its' own "ReadMe" file which all developers should view when they open the solution.
  
 ## Features
 
 - Modifications can be limited to files under source control only. This is the default setting, but can be overridden to allow non-source controlled files to be modified.
-
-- If a solution is opened whose name matches a rule, user is shown a summary of any modifications made. This summary can be surpressed if no modifications were made.
 
 <!--COPY END FOR VS GALLERY-->
 
