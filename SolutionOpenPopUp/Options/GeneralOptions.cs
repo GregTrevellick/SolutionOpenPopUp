@@ -8,12 +8,12 @@ namespace SolutionOpenPopUp.Options
     {
         [Category(CommonConstants.CategorySubLevel)]
         [DisplayName("Show " + CommonConstants.ReadMeDotTxt + " (from solution root) when opening solution")]
-        [Description("Set to true so that the content of a file named '" + CommonConstants.ReadMeDotTxt + "' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
+        [Description("Set to true so that the content of a file named '" + CommonConstants.ReadMeDotTxt + "' (case insensitive), located in the root folder of the solution, is displayed in a pop-up dialog when the solution is opened, provided such a file exists.")]
         public bool ShowReadMeDotTxt { get; set; } = true;
 
         [Category(CommonConstants.CategorySubLevel)]
         [DisplayName("Show " + CommonConstants.SolutionOpenPopUpDotTxt + " (from solution root) when opening solution")]
-        [Description("Set to true so that the content of a file named '" + CommonConstants.SolutionOpenPopUpDotTxt + "' (case insensitive), located in the root folder of the solution, are displayed in the pop-up message when the solution is opened, provided such a file exists.")]
+        [Description("Set to true so that the content of a file named '" + CommonConstants.SolutionOpenPopUpDotTxt + "' (case insensitive), located in the root folder of the solution, is displayed in a pop-up dialog when the solution is opened, provided such a file exists.")]
         public bool ShowSolutionOpenPopUpDotTxt { get; set; } = true;
 
         //[Category("General")]
@@ -39,18 +39,18 @@ namespace SolutionOpenPopUp.Options
         //}
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Maxiumum lines for all text files")]
-        [Description("The overall maxiumum number of lines to show in the pop-up for all text files combined. When more than one text file is displayed, the contents are shown pro-rata within this limit.")]
+        [DisplayName("Maxiumum lines to,display")]
+        [Description("The overall maxiumum number of lines to show in the pop-up for all text files combined. When more than one text file is displayed, the contents of each file are shown on a pro-rata basis.")]
         public int OverallLinesLimit { get; set; } = 35;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Long lines truncation point")]
-        [Description("The truncation point at which long text lines should be truncated, rather than eat up huge amounts of real-estate.")]
+        [DisplayName("Line truncation limit")]
+        [Description("The truncation point at which individual lines of text in the source file will be truncated.")]
         public int LineLengthTruncationLimit { get; set; } = 100;
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Show file names in footer")]
-        [Description("Show file names of the files containing content that appears in the pop-up window. Set to false to increase the amount of real-estate available for the pop-up content.")]
+        [DisplayName("Show source file names")]
+        [Description("Show or hide the file names of the files containing content that appears in the pop-up window.")]
         public bool ShowFileNamesInPopUp { get; set; } = true;
 
         ////public override void LoadSettingsFromStorage()
