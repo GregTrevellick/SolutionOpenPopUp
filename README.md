@@ -25,7 +25,7 @@ Download this extension from the [VS Marketplace][VSMarketplaceUrl].
 
 Display the contents of certain text files in a solution folder in a pop-up when the solution is opened.
 
-A handy way to share solution-specific gotchas, non-critical team messages or your own personal notes for a solution. 
+If a file called SolutionOpenPopUp.txt and/or ReadMe.txt exists in the root folder of the solution, the contents are shown in a pop-up when the solution is open - a handy way to share solution-specific gotchas, non-critical team messages, etc with colleagues and contributors. 
 
  - *If you like this ***free*** extension please give a star rating below, it only takes a few seconds*.
 
@@ -43,7 +43,17 @@ A handy way to share solution-specific gotchas, non-critical team messages or yo
  
 ## Features
 
-- Modifications can be limited to files under source control only. This is the default setting, but can be overridden to allow non-source controlled files to be modified.
+- Option to show/hide the content of SolutionOpenPopUp.txt in root folder of the solution in a pop-up when the solution is open.
+
+- Option to show/hide the content of ReadMe.txt in root folder of the solution in a pop-up when the solution is open.
+
+- Excessively long lines of text are truncated according to a user-defined value.
+
+- User-defined limit for maximum number of lines to be shown in pop-up.
+
+- If maximum lines limit is exceeded and multiple files are being displayed, the content of each file is truncated pro-rata.
+
+- Option to show/hide source file names in the pop-up.
 
 <!--COPY END FOR VS GALLERY-->
 
