@@ -33,11 +33,13 @@ A handy way to share solution-specific gotchas, non-critical team messages or yo
 
  - You're new to a company, have made some notes on various .Net solutions, and it would be useful to see the notes pertinent to each solution whenever you open it.
 
- - Your team is planning to upgrade this solution to VS2017 in the next quarter, so if you haven't already please download and install VS2017
+ - You / your team is planning to upgrade this solution to VS2017 in the next quarter, so you want to give the coders a heads up (e.g. so that they can download and install VS2017)
 
- - Gotcha: this solution has a build step that is dependant on a specific hard coded file path existing on your PC, without which it won't compile
+ - Inform programmers about any 'gotchas' for the solution (either compilation gotchas, runtime gotchas or unit test gotchas)
 
- - This solution contains the public facing API that allows authorised customers to inject new products into the database 
+ - Give a brief summary of what the solution does, what its purpose is
+ 
+ - For POCs explain why it is a POC 
  
 ## Features
 
