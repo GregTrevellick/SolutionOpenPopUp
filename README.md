@@ -17,7 +17,7 @@
 <!--![](https://vsmarketplacebadge.apphb.com/installs/GregTrevellick.SolutionOpenPopUp.svg)-->
 <!--![](https://vsmarketplacebadge.apphb.com/rating/GregTrevellick.SolutionOpenPopUp.svg)-->
 
-![](SolutionOpenPopUp/Resources/VsixExtensionPreview_175x175.png)
+![VSMarketplaceUrl](SolutionOpenPopUp/Resources/VsixExtensionPreview_175x175.png)
 
 Download this extension from the [VS Marketplace][VSMarketplaceUrl].
 
