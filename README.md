@@ -33,6 +33,8 @@ If a file called SolutionOpenPopUp.txt and/or ReadMe.txt exists in the root fold
 
 Use this extension anytime you want to see, or you want others to see, certain information when a solution is opened. As you cannot gaurantee other users will have this extension installed you should not rely on this extension to convey critical information.
 
+![](SolutionOpenPopUp/Resources/ReadMeScreenShot_PopUpBasic.png)
+
 For example:
 
  - You're new to a company, have made some notes on a .Net solution, and it would be useful to see the notes each time you open the solution.
@@ -46,8 +48,12 @@ For example:
  - Your solution has its' own "ReadMe" file which all developers should view when they open the solution.
  
  - You want to share a joke-of-the-day or coder-of-the-week announcement with colleagues.
+
+![](SolutionOpenPopUp/Resources/ReadMeScreenShot_PopUpWithFooter.png)
  
 ## Features
+
+![](SolutionOpenPopUp/Resources/ReadMeScreenShot_OptionsGeneral.png)
 
 - Option to show/hide the content of SolutionOpenPopUp.txt in root folder of the solution in a pop-up when the solution is open.
 
