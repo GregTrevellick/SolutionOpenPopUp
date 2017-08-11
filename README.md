@@ -49,8 +49,6 @@ For example:
  
  - You want to share a joke-of-the-day or coder-of-the-week announcement with colleagues.
 
-![](SolutionOpenPopUp/Resources/ReadMeScreenShot_PopUpWithFooter.png)
- 
 ## Features
 
 ![](SolutionOpenPopUp/Resources/ReadMeScreenShot_OptionsGeneral.png)
@@ -66,6 +64,8 @@ For example:
 - If maximum lines limit is exceeded and multiple files are being displayed, the content of each file is truncated pro-rata.
 
 - Option to show/hide source file names in the pop-up.
+
+![](SolutionOpenPopUp/Resources/ReadMeScreenShot_PopUpWithFooter.png)
 
 <!--COPY END FOR VS GALLERY-->
 
