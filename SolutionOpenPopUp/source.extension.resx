@@ -121,7 +121,7 @@
     <value>Solution Open Pop Up</value>
   </data>
   <data name="112" xml:space="preserve">
-    <value>Display the contents of certain text files in a solution folder in a pop-up when the solution is opened. A handy way to share solution-specific gotchas, non-critical team messages or your own personal notes for a solution. 
+    <value>Display the contents of certain text files when the solution is opened in a pop-up window. A handy way to share solution-specific gotchas, non-critical team messages or your own personal notes for a solution. 
 </value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
