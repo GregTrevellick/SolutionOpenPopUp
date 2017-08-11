@@ -118,6 +118,7 @@
     <Content Include="Resources\ReadMeScreenShot_PopUpBasic.png" />
     <Content Include="Resources\ReadMeScreenShot_PopUpSolutionOpen.png" />
     <Content Include="Resources\ReadMeScreenShot_PopUpWithFooter.png" />
+    <Content Include="Resources\ReadMe_AnimatedDemo.gif" />
     <Content Include="Resources\VsixExtensionIcon_16x16.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
