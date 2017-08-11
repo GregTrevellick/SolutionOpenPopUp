@@ -33,6 +33,8 @@ If a file called SolutionOpenPopUp.txt and/or ReadMe.txt exists in the root fold
 
 Use this extension anytime you want to see, or you want others to see, certain information when a solution is opened. As you cannot gaurantee other users will have this extension installed you should not rely on this extension to convey critical information.
 
+![](SolutionOpenPopUp/Resources/ReadMeScreenShot_PopUpSolutionOpen.png)
+
 ![](SolutionOpenPopUp/Resources/ReadMeScreenShot_PopUpBasic.png)
 
 For example:
