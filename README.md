@@ -15,9 +15,17 @@
 [![Build status][AppVeyorProjectBuildStatusBadgeSvg]][AppVeyorProjectUrl]
 [![][VersionNumberBadgeURL]][VSMarketplaceUrl]
 <!--![](https://vsmarketplacebadge.apphb.com/installs/GregTrevellick.SolutionOpenPopUp.svg)-->
-<!--![](https://vsmarketplacebadge.apphb.com/rating/GregTrevellick.SolutionOpenPopUp.svg)-->
+<!--![](https://vsmarketplacebadge.apphb.com/rating/)-->
 
-![VSMarketplaceUrl](SolutionOpenPopUp/Resources/VsixExtensionPreview_175x175.png)
+[![](SolutionOpenPopUp/Resources/VsixExtensionPreview_175x175.png)](https://marketplace.visualstudio.com/items?itemName=GregTrevellick.OpeninVivaldi)
+
+
+
+VSMarketplaceUrl
+
+
+
+
 
 Download this extension from the [VS Marketplace][VSMarketplaceUrl].
 
