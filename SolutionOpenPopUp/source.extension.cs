@@ -12,7 +12,7 @@ namespace SolutionOpenPopUp
         public const string Description = @"Display the contents of certain text files in a solution folder in a pop-up when the solution is opened. A handy way to share solution-specific gotchas, non-critical team messages or your own personal notes for a solution. 
 ";
         public const string Language = "en-US";
-        public const string Version = "1.0.15";
+        public const string Version = "1.0.17";
         public const string Author = "Greg Trevellick";
         public const string Tags = "solution open, popup, pop-up, pop up, gotcha, gotchas";
     }

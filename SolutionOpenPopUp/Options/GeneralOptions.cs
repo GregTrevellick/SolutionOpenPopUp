@@ -39,7 +39,7 @@ namespace SolutionOpenPopUp.Options
         //}
 
         [Category(CommonConstants.CategorySubLevel)]
-        [DisplayName("Maxiumum lines to,display")]
+        [DisplayName("Maxiumum lines to display")]
         [Description("The overall maxiumum number of lines to show in the pop-up for all text files combined. When more than one text file is displayed, the contents of each file are shown on a pro-rata basis.")]
         public int OverallLinesLimit { get; set; } = 35;
 
