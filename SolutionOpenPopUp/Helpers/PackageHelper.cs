@@ -11,15 +11,18 @@ namespace SolutionOpenPopUp.Helpers
         {
             var allTruncatedLines = new List<string>();
 
-            foreach (var line in allLines)
+            if (allLines != null)
             {
-                if (line.Length > lineLengthTruncationLimit)
+                foreach (var line in allLines)
                 {
-                    allTruncatedLines.Add(line.Substring(0, lineLengthTruncationLimit) + "...");
-                }
-                else
-                {
-                    allTruncatedLines.Add(line);
+                    if (line.Length > lineLengthTruncationLimit)
+                    {
+                        allTruncatedLines.Add(line.Substring(0, lineLengthTruncationLimit) + "...");
+                    }
+                    else
+                    {
+                        allTruncatedLines.Add(line);
+                    }
                 }
             }
 
