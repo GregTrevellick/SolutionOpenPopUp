@@ -48,19 +48,22 @@ namespace SolutionOpenPopUp
 
             SolutionOpenPopUpDotTxtHandler();
 
-            ShowReadMeDotTxtHandler();
+            ReadMeDotTxtHandler();
 
             var popUpBody = GetPopUpBody(textFileDtos);
 
-            if (GeneralOptionsDto.ShowFileNamesInPopUp)
+            if (!string.IsNullOrEmpty(popUpBody))
             {
-                popUpBody += GetPopUpFooter();
-            }
+                if (GeneralOptionsDto.ShowFileNamesInPopUp)
+                {
+                    popUpBody += GetPopUpFooter();
+                }
 
-            DisplayPopUpMessage(string.Empty, popUpBody);
+                DisplayPopUpMessage(string.Empty, popUpBody);
+            }
         }
 
-        private void ShowReadMeDotTxtHandler()
+        private void ReadMeDotTxtHandler()
         {
             if (GeneralOptionsDto.ShowReadMeDotTxt)
             {
@@ -138,7 +141,7 @@ namespace SolutionOpenPopUp
                 }
                 else
                 {
-                    popUpFooter += bulletPoint + textFileDto + " not found.";
+                    popUpFooter += bulletPoint + textFileDto.FileName + " not found.";
                     popUpFooter += Environment.NewLine;
                 }
 
