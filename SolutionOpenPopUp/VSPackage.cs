@@ -26,6 +26,7 @@ namespace SolutionOpenPopUp
         private string bulletPoint = " - ";
         private string solutionFolder;
         private List<TextFileDto> textFileDtos;
+        private bool popUpBodyIsPopulated;
 
         public VSPackage()
         {
@@ -43,16 +44,16 @@ namespace SolutionOpenPopUp
 
         private void OnSolutionOpened()
         {
-            textFileDtos = new List<TextFileDto>();
+            popUpBodyIsPopulated = false;
             popUpFooter = string.Empty;
+            textFileDtos = new List<TextFileDto>();
 
             SolutionOpenPopUpDotTxtHandler();
-
             ReadMeDotTxtHandler();
 
             var popUpBody = GetPopUpBody(textFileDtos);
 
-            if (!string.IsNullOrEmpty(popUpBody))
+            if (popUpBodyIsPopulated)
             {
                 if (GeneralOptionsDto.ShowFileNamesInPopUp)
                 {
@@ -131,7 +132,9 @@ namespace SolutionOpenPopUp
                 if (textFileDto.FileExists)
                 {
                     var linesToUse = textFileDto.AllLines.Take(textFileDto.MaxLinesToShow);
-                    var linesToUseJoined = string.Join(Environment.NewLine, linesToUse);
+                    var toUse = linesToUse as IList<string> ?? linesToUse.ToList();
+                    SetPopUpBodyIsPopulated(toUse);
+                    var linesToUseJoined = string.Join(Environment.NewLine, toUse);
                     linesToUseJoined.TrimPrefix(Environment.NewLine);
                     result += linesToUseJoined;
 
@@ -150,6 +153,18 @@ namespace SolutionOpenPopUp
             }
 
             return result;
+        }
+
+        private void SetPopUpBodyIsPopulated(IList<string> linesToUse)
+        {
+            if (!popUpBodyIsPopulated)
+            {
+                if (linesToUse.Any(x => !string.IsNullOrEmpty(x)) ||
+                    linesToUse.Any(x => !string.IsNullOrWhiteSpace(x)))
+                {
+                    popUpBodyIsPopulated = true;
+                }
+            }
         }
 
         private string GetPopUpFooter()
