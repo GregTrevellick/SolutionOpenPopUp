@@ -40,6 +40,7 @@ namespace SolutionOpenPopUp
             dte = serviceContainer.GetService(typeof(SDTE)) as DTE;
             var solutionEvents = dte.Events.SolutionEvents;
             solutionEvents.Opened += OnSolutionOpened;
+            //bool a = dte.Solution.IsOpen();
         }
 
         private void OnSolutionOpened()
