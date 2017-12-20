@@ -7,7 +7,7 @@
 [VisualStudioURL]: https://www.visualstudio.com/
 [VSMarketplaceUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp
 [VSMarketplaceReviewsUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp#review-details
-[CharityWareURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/blob/master/MiscellaneousArtefacts/CharityWare.MD
+[CharityWareURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware
 
 # Solution Open Pop Up
 
