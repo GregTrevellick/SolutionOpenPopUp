@@ -7,7 +7,7 @@
 [VisualStudioURL]: https://www.visualstudio.com/
 [VSMarketplaceUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp
 [VSMarketplaceReviewsUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp#review-details
-
+[CharityWareURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/blob/master/MiscellaneousArtefacts/CharityWare.MD
 
 # Solution Open Pop Up
 
@@ -29,7 +29,9 @@ Display the contents of certain text files in a solution folder in a pop-up when
 
 If a file called SolutionOpenPopUp.txt and/or ReadMe.txt exists in the root folder of the solution, the contents are shown in a pop-up when the solution is open - a handy way to share solution-specific gotchas, non-critical team messages, etc with colleagues and contributors. 
 
- - *If you like this ***free*** extension please give a star rating below, it only takes a few seconds*.
+ - *If you LIKE this ***FREE*** extension please give a star rating below, it only takes a few seconds*.
+
+ - *If you LOVE this ***FREE*** extension please [help others][CharityWareURL].*
 
 ![](SolutionOpenPopUp/Resources/ReadMe_AnimatedDemo.gif)
 
