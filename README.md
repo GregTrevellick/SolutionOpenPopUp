@@ -8,6 +8,7 @@
 [VSMarketplaceUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp
 [VSMarketplaceReviewsUrl]: https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp#review-details
 [CharityWareURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware
+[WhyURL]: https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Why
 
 # Solution Open Pop Up
 
@@ -58,6 +59,8 @@ For example:
  - Your solution has its' own "ReadMe" file which all developers should view when they open the solution.
  
  - You want to share a joke-of-the-day or coder-of-the-week announcement with colleagues.
+
+[Why build this extension?][WhyURL] 
 
 ## Features
 
