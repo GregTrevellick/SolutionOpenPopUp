@@ -10,6 +10,8 @@ using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using SolutionOpenPopUp.Rating;
+using VsixRatingChaser.Interfaces;
 
 namespace SolutionOpenPopUp
 {
@@ -186,11 +188,12 @@ namespace SolutionOpenPopUp
 
         private void DisplayPopUpMessage(string popUpTitle, string popUpBody)
         {
+            ChaseRating();
+
             if (!string.IsNullOrEmpty(popUpBody))
             {
                 IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
                 Guid clsid = Guid.Empty;
-                int result;
 
                 uiShell.ShowMessageBox(
                     0,
@@ -203,7 +206,7 @@ namespace SolutionOpenPopUp
                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
                     OLEMSGICON.OLEMSGICON_NOICON,
                     0,
-                    out result);
+                    out int result);
             }
         }
 
@@ -234,6 +237,13 @@ namespace SolutionOpenPopUp
                 }
                 return solutionFolder;
             }
+        }
+
+        private void ChaseRating()
+        {
+            var hiddenChaserOptions = (IRatingDetailsDto)GetDialogPage(typeof(HiddenRatingDetailsDto));
+            var packageRatingChaser = new PackageRatingChaser();
+            packageRatingChaser.Hunt(hiddenChaserOptions);
         }
     }
 }
