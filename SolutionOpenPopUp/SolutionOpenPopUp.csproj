@@ -120,6 +120,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="RatingRequestScreenshot.png" />
     <Content Include="Resources\ReadMeScreenShot_OptionsGeneral.png" />
     <Content Include="Resources\ReadMeScreenShot_PopUpBasic.png" />
     <Content Include="Resources\ReadMeScreenShot_PopUpSolutionOpen.png" />
@@ -258,8 +259,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="VsixRatingChaser">
-      <HintPath>..\..\VsixRatingChaser\src\VsixRatingChaser\bin\Debug\VsixRatingChaser.dll</HintPath>
+    <Reference Include="VsixRatingChaser, Version=1.0.59.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\VsixRatingChaser.1.0.59\lib\net47\VsixRatingChaser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
