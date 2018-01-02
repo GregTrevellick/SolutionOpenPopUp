@@ -120,7 +120,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="RatingRequestScreenshot.png" />
     <Content Include="Resources\ReadMeScreenShot_OptionsGeneral.png" />
     <Content Include="Resources\ReadMeScreenShot_PopUpBasic.png" />
     <Content Include="Resources\ReadMeScreenShot_PopUpSolutionOpen.png" />
