@@ -2,6 +2,10 @@
 
 These are the changes to each version that has been released on the official Visual Studio extension gallery.
 
+## 1.0.29
+**2018-01-xx**
+- [x] Minor enhancements
+
 ## 1.0.28
 **2017-08-22**
 - [x] Minor bug fixes

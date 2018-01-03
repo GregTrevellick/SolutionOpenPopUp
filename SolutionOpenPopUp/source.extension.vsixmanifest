@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="9ea776a6-e317-4ba8-a957-fa59958ec214" Version="1.0.28" Language="en-US" Publisher="Greg Trevellick" />
+        <Identity Id="9ea776a6-e317-4ba8-a957-fa59958ec214" Version="1.0.29" Language="en-US" Publisher="Greg Trevellick" />
         <DisplayName>Solution Open Pop Up</DisplayName>
         <Description xml:space="preserve">Display the contents of certain text files when the solution is opened in a pop-up window. A handy way to share solution-specific gotchas, non-critical team messages or your own personal notes for a solution. 
 </Description>
