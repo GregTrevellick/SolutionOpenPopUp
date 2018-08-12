@@ -27,10 +27,6 @@
 [![Charity Ware](https://img.shields.io/badge/charity%20ware-thank%20you-brightgreen.svg)](https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware)
 [![License](https://img.shields.io/github/license/gittools/gitlink.svg)](/LICENSE.txt)<!--BadgesEND-->
 
-[![][VersionNumberBadgeURL]][VSMarketplaceUrl]
-<!--![](https://vsmarketplacebadge.apphb.com/installs/GregTrevellick.SolutionOpenPopUp.svg)-->
-<!--![](https://vsmarketplacebadge.apphb.com/rating/)-->
-
 [![](SolutionOpenPopUp/Resources/VsixExtensionPreview_175x175.png)][VSMarketplaceUrl]
 
 Download this extension from the [VS Marketplace][VSMarketplaceUrl].
