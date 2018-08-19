@@ -1,2 +1,4 @@
 language: csharp
 solution: SolutionOpenPopUp.sln
+script:
+  - xbuild /p:Configuration=Release SolutionOpenPopUp.sln
