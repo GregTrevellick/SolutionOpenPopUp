@@ -111,6 +111,8 @@ Contributions to this project are welcome by raising an [Issue][GitHubRepoIssues
 
 The following authors / articles deserve special mention for their help whilst creating this extension:
 
+[Ben](https://stackoverflow.com/questions/36035176/build-vs-2015-extension-on-build-server-without-vs-installed/43934701#43934701)
+
 [Mads Kristensen](https://channel9.msdn.com/Events/Build/2016/B886)
 
 [Joshua Thompson](http://schmalls.com/2015/01/19/adventures-in-visual-studio-extension-development-part-2)
