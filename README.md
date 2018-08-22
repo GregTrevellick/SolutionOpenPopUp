@@ -13,6 +13,7 @@
 # Solution Open Pop Up
 
 <!--BadgesSTART-->
+[![Read Me Synchronizer](https://img.shields.io/badge/-powered%20by%20read%20me%20synchronizer-brightgreen.svg)](https://github.com/GregTrevellick/ReadMeSynchronizer)
 <!-- Powered by https://github.com/GregTrevellick/ReadMeSynchronizer -->
 
 [![BetterCodeHub compliance](https://bettercodehub.com/edge/badge/GregTrevellick/SolutionOpenPopUp?branch=master)](https://bettercodehub.com/results/GregTrevellick/SolutionOpenPopUp)
@@ -21,10 +22,22 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/GregTrevellick/SolutionOpenPopUp.svg)](https://github.com/GregTrevellick/SolutionOpenPopUp)
 [![Github language count](https://img.shields.io/github/languages/count/GregTrevellick/SolutionOpenPopUp.svg)](https://github.com/GregTrevellick/SolutionOpenPopUp)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/GregTrevellick/SolutionOpenPopUp.svg)](https://github.com/GregTrevellick/SolutionOpenPopUp/pulls)
+[![Sonar&metric=alert_status](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=alert_status)](https://sonarcloud.io/dashboard?id=SolutionOpenPopUp)
+[![Sonar&metric=bugs](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=bugs)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=bugs)
+[![Sonar&metric=code_smells](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=code_smells)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=code_smells)
+[![Sonar&metric=coverage](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=coverage)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=Coverage)
+[![Sonar&metric=duplicated_lines_density](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=duplicated_lines_density)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=duplicated_lines)
+[![Sonar&metric=ncloc](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=ncloc)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=ncloc)
+[![Sonar&metric=reliability_rating](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=reliability_rating)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=reliability_rating)
+[![Sonar&metric=security_rating](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=security_rating)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=security_rating)
+[![Sonar&metric=sqale_index](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=sqale_index)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=sqale_index)
+[![Sonar&metric=sqale_rating](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=sqale_rating)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=sqale_rating)
+[![Sonar&metric=vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=vulnerabilities)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=vulnerabilities)
 [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/89c8gp1t0rua9fiw?svg=true)](https://ci.appveyor.com/project/GregTrevellick/SolutionOpenPopUp)
 [![Appveyor unit tests](https://img.shields.io/appveyor/tests/GregTrevellick/SolutionOpenPopUp.svg)](https://ci.appveyor.com/project/GregTrevellick/SolutionOpenPopUp/build/tests)
-[![Access Lint github](https://img.shields.io/badge/a11y-checked-green.svg)](https://www.accesslint.com)
-[![ImgBot](https://img.shields.io/badge/images-optimized-green.svg)](https://imgbot.net/)
+[![Access Lint github](https://img.shields.io/badge/a11y-checked-brightgreen.svg)](https://www.accesslint.com)
+[![ImgBot](https://img.shields.io/badge/images-optimized-brightgreen.svg)](https://imgbot.net/)
+[![Renovate Bot github](https://img.shields.io/badge/renovatebot-checked-brightgreen.svg)](https://renovatebot.com/)
 [![Charity Ware](https://img.shields.io/badge/charity%20ware-thank%20you-brightgreen.svg)](https://github.com/GregTrevellick/MiscellaneousArtefacts/wiki/Charity-Ware)
 [![License](https://img.shields.io/github/license/gittools/gitlink.svg)](/LICENSE.txt)
 
