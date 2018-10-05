@@ -21,6 +21,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/GregTrevellick/SolutionOpenPopUp/badge)](https://www.codefactor.io/repository/github/GregTrevellick/SolutionOpenPopUp)
 [![GitHub top language](https://img.shields.io/github/languages/top/GregTrevellick/SolutionOpenPopUp.svg)](https://github.com/GregTrevellick/SolutionOpenPopUp)
 [![Github language count](https://img.shields.io/github/languages/count/GregTrevellick/SolutionOpenPopUp.svg)](https://github.com/GregTrevellick/SolutionOpenPopUp)
+[![GitHub issues](https://img.shields.io/github/issues-raw/GregTrevellick/SolutionOpenPopUp.svg)](https://github.com/GregTrevellick/SolutionOpenPopUp/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/GregTrevellick/SolutionOpenPopUp.svg)](https://github.com/GregTrevellick/SolutionOpenPopUp/pulls)
 [![Sonar&metric=alert_status](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=alert_status)](https://sonarcloud.io/dashboard?id=SolutionOpenPopUp)
 [![Sonar&metric=bugs](https://sonarcloud.io/api/project_badges/measure?project=SolutionOpenPopUp&metric=bugs)](https://sonarcloud.io/component_measures?id=SolutionOpenPopUp&metric=bugs)
