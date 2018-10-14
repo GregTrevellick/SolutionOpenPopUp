@@ -20,6 +20,7 @@
 
 [![BetterCodeHub compliance](https://bettercodehub.com/edge/badge/GregTrevellick/SolutionOpenPopUp?branch=master)](https://bettercodehub.com/results/GregTrevellick/SolutionOpenPopUp)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/23dfefe3b5014fd8b8462b47a3f38c1c)](https://www.codacy.com/project/gtrevellick/SolutionOpenPopUp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GregTrevellick/SolutionOpenPopUp&amp;utm_campaign=Badge_Grade_Dashboard)
+
 [![CodeFactor](https://www.codefactor.io/repository/github/GregTrevellick/SolutionOpenPopUp/badge)](https://www.codefactor.io/repository/github/GregTrevellick/SolutionOpenPopUp)
 [![Inspecode Report](https://inspecode.rocro.com/badges/github.com/GregTrevellick/SolutionOpenPopUp/report?token=0Oyen_xXU89j-bI9P32-6JZzwRbipU51eX-y36w4VmA)](https://inspecode.rocro.com/reports/github.com/GregTrevellick/SolutionOpenPopUp/branch/master/summary)
 
