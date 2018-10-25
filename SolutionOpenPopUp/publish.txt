@@ -1,0 +1,6 @@
+https://docs.microsoft.com/en-us/visualstudio/extensibility/walkthrough-publishing-a-visual-studio-extension-via-command-line?view=vs-2017
+
+cd C:\Users\gtrev\Source\Repos\OpenInApp.Launcher\src\packages\Microsoft.VSSDK.BuildTools.15.8.3252\tools\vssdk\bin
+
+.\VsixPublisher.exe publish -payload "..\..\..\..\..\OpenInAbracadabra\bin\debug\OpenInAbracadabra.vsix"                             -publishManifest "..\..\..\..\..\OpenInAbracadabra\vs-publish.json"               -personalAccessToken "xx"
+                         -publishManifest "..\..\..\..\..\OpenInXamarinStudio\vs-publish.json"             -personalAccessToken "xx"

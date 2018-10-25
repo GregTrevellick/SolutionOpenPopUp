@@ -12,20 +12,26 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using SolutionOpenPopUp.Rating;
 using VsixRatingChaser.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft;
 
 namespace SolutionOpenPopUp
 {
     [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
-    [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
-    [PackageRegistration(UseManagedResourcesOnly = true)]
+    //[ProvideAutoLoad(UIContextGuids80.SolutionExists)]
+    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration(productName: "#110", productDetails: "#112", productId: Vsix.Version, IconResourceID = 400)]
     [Guid("65dcb9bb-a90a-458b-9a89-a12fe85b9077")]
-    public sealed class VSPackage : Package
+    public sealed class VSPackage : AsyncPackage
     {
+#pragma warning disable S1075 // URIs should not be hardcoded
+        private const string marketplaceUrl = "https://goo.gl/aGVjJ8";
+#pragma warning restore S1075 // URIs should not be hardcoded
         private DTE dte;
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
-        private string bulletPoint = " - ";
+        private readonly string bulletPoint = " - ";
         private string solutionFolder;
         private List<TextFileDto> textFileDtos;
         private bool popUpBodyIsPopulated;
@@ -34,19 +40,24 @@ namespace SolutionOpenPopUp
         {
         }
 
-        protected override void Initialize()
+        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            base.Initialize();
+            await JoinableTaskFactory.SwitchToMainThreadAsync();
 
             IServiceContainer serviceContainer = this as IServiceContainer;
             dte = serviceContainer.GetService(typeof(SDTE)) as DTE;
+            Assumes.Present(dte);
             var solutionEvents = dte.Events.SolutionEvents;
             solutionEvents.Opened += OnSolutionOpened;
-            //bool a = dte.Solution.IsOpen();
+#pragma warning disable S125 // Sections of code should not be commented out
+                            //bool a = dte.Solution.IsOpen();
         }
+#pragma warning restore S125 // Sections of code should not be commented out
 
         private void OnSolutionOpened()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             popUpBodyIsPopulated = false;
             popUpFooter = string.Empty;
             textFileDtos = new List<TextFileDto>();
@@ -69,6 +80,8 @@ namespace SolutionOpenPopUp
 
         private void ReadMeDotTxtHandler()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (GeneralOptionsDto.ShowReadMeDotTxt)
             {
                 var textFile = Path.Combine(SolutionFolder, CommonConstants.ReadMeDotTxt);
@@ -78,6 +91,8 @@ namespace SolutionOpenPopUp
 
         private void SolutionOpenPopUpDotTxtHandler()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (GeneralOptionsDto.ShowSolutionOpenPopUpDotTxt)
             {
                 var textFile = Path.Combine(SolutionFolder, CommonConstants.SolutionOpenPopUpDotTxt);
@@ -87,6 +102,8 @@ namespace SolutionOpenPopUp
 
         private string GetPopUpBody(IEnumerable<TextFileDto> textFileDtos)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             var popUpBody = string.Empty;
 
             foreach (var textFileDto in textFileDtos)
@@ -99,7 +116,9 @@ namespace SolutionOpenPopUp
 
             foreach (var textFileDto in textFileDtos)
             {
+#pragma warning disable S1643 // Strings should not be concatenated using '+' in a loop
                 popUpBody += GetPopUpMessage(textFileDto);
+#pragma warning restore S1643 // Strings should not be concatenated using '+' in a loop
             }
 
             return popUpBody;
@@ -107,6 +126,8 @@ namespace SolutionOpenPopUp
     
         private void ReadAllLines(TextFileDto textFileDto)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (!string.IsNullOrEmpty(textFileDto.FileName))
             {
                 if (File.Exists(textFileDto.FileName))
@@ -160,13 +181,11 @@ namespace SolutionOpenPopUp
 
         private void SetPopUpBodyIsPopulated(IList<string> linesToUse)
         {
-            if (!popUpBodyIsPopulated)
+            if (!popUpBodyIsPopulated &&
+                (linesToUse.Any(x => !string.IsNullOrEmpty(x)) ||
+                linesToUse.Any(x => !string.IsNullOrWhiteSpace(x))))
             {
-                if (linesToUse.Any(x => !string.IsNullOrEmpty(x)) ||
-                    linesToUse.Any(x => !string.IsNullOrWhiteSpace(x)))
-                {
-                    popUpBodyIsPopulated = true;
-                }
+                popUpBodyIsPopulated = true;
             }
         }
 
@@ -176,9 +195,7 @@ namespace SolutionOpenPopUp
 
             if (!string.IsNullOrEmpty(popUpFooter))
             {
-                //var url = "https://marketplace.visualstudio.com/items?itemName=GregTrevellick.SolutionOpenPopUp";
-                var shortUrl = "https://goo.gl/aGVjJ8";
-                result +=  Vsix.Name + "   " + Vsix.Version + "   " + shortUrl;
+                result +=  Vsix.Name + "   " + Vsix.Version + "   " + marketplaceUrl;
                 result += Environment.NewLine;
                 result += popUpFooter;
             }
@@ -188,11 +205,13 @@ namespace SolutionOpenPopUp
 
         private void DisplayPopUpMessage(string popUpTitle, string popUpBody)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             ChaseRating();
 
             if (!string.IsNullOrEmpty(popUpBody))
             {
                 IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
+                Assumes.Present(uiShell);
                 Guid clsid = Guid.Empty;
 
                 uiShell.ShowMessageBox(
@@ -230,6 +249,8 @@ namespace SolutionOpenPopUp
         {
             get
             {
+                ThreadHelper.ThrowIfNotOnUIThread();
+
                 if (string.IsNullOrEmpty(solutionFolder))
                 {
                     var solutionPath = dte.Solution.FullName;
