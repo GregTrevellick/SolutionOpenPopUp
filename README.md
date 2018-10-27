@@ -140,6 +140,8 @@ The following authors / articles deserve special mention for their help whilst c
 
 [Joshua Thompson](http://schmalls.com/2015/01/19/adventures-in-visual-studio-extension-development-part-2)
 
+[Simon Mourier](https://stackoverflow.com/questions/51479574/visual-studio-2017-vsix-package-stops-working-after-updating-nuget-packages)
+
 [Slaks.Blog](http://blog.slaks.net/2013-11-10/extending-visual-studio-part-2-core-concepts/)
 
 [![](./chart.png)][VSMarketplaceUrl]
