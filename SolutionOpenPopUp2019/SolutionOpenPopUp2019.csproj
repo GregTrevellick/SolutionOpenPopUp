@@ -24,8 +24,8 @@
     <ProjectGuid>{E0739238-CDB6-4C2E-8F35-6F15FF8CBBBF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolutionLoadSample</RootNamespace>
-    <AssemblyName>SolutionLoadSample</AssemblyName>
+    <RootNamespace>SolutionOpenPopUp</RootNamespace>
+    <AssemblyName>SolutionOpenPopUp</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>

@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.Shell.Events;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
-namespace SolutionLoadSample
+namespace SolutionOpenPopUp
 {
     [Guid("61eadc52-5677-4548-b273-08f1e6574f71")]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
