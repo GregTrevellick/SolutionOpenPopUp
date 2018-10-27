@@ -1,4 +1,4 @@
-﻿using SolutionOpenPopUp;
+using SolutionOpenPopUp;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
