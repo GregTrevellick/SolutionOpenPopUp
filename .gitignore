@@ -21,3 +21,48 @@ x64/
 *.ncrunchsolution
 *.ncrunchproject
 _NCrunch_WebCompiler
+/VSIXProject1/VSPackage.cs
+/VSIXProject1/VSIXProject1.csproj
+/VSIXProject1/source.extension.vsixmanifest
+/VSIXProject1/source.extension.resx
+/VSIXProject1/source.extension.ico
+/VSIXProject1/source.extension.cs
+/VSIXProject1/Resources/z/z_v1_Untitled.png
+/VSIXProject1/Resources/z/z_v1_Solution175x175.png
+/VSIXProject1/Resources/z/VsixExtensionPreview_175x175 - Copy.png
+/VSIXProject1/Resources/z/VsixExtensionIcon_90x90 - Copy.png
+/VSIXProject1/Resources/z/VsixExtensionIcon_16x16 - Copy.png
+/VSIXProject1/Resources/z/Untitled4.png
+/VSIXProject1/Resources/z/Untitled3.png
+/VSIXProject1/Resources/z/Untitled2.png
+/VSIXProject1/Resources/z/speech-bubble-hi.png
+/VSIXProject1/Resources/z/Solution175x175.png
+/VSIXProject1/Resources/z/Solution175x175 - Copy.png
+/VSIXProject1/Resources/z/Solution175x175 - Copy - Copy.png
+/VSIXProject1/Resources/z/Solution.png
+/VSIXProject1/Resources/z/PopupControl.png
+/VSIXProject1/Resources/z/Open.png
+/VSIXProject1/Resources/VsixExtensionPreview_175x175.png
+/VSIXProject1/Resources/VsixExtensionIcon_90x90.png
+/VSIXProject1/Resources/VsixExtensionIcon_16x16.png
+/VSIXProject1/Resources/ReadMe_AnimatedDemo.gif
+/VSIXProject1/Resources/ReadMeScreenShot_PopUpWithFooter.png
+/VSIXProject1/Resources/ReadMeScreenShot_PopUpSolutionOpen.png
+/VSIXProject1/Resources/ReadMeScreenShot_PopUpBasic.png
+/VSIXProject1/Resources/ReadMeScreenShot_OptionsGeneral.png
+/VSIXProject1/Rating/PackageRatingChaser.cs
+/VSIXProject1/Rating/ChaserGateway.cs
+/VSIXProject1/publish.txt
+/VSIXProject1/Properties/vsix-compress.props
+/VSIXProject1/Properties/AssemblyInfo.cs
+/VSIXProject1/Options/HiddenRatingDetailsDto.cs
+/VSIXProject1/Options/GeneralOptions.cs
+/VSIXProject1/Helpers/PackageHelper.cs
+/VSIXProject1/Helpers/FilePrompterHelper.cs
+/VSIXProject1/Helpers/Dtos/TextFileDto.cs
+/VSIXProject1/Helpers/Dtos/PersistOptionsDto.cs
+/VSIXProject1/Helpers/Dtos/GeneralOptionsDto.cs
+/VSIXProject1/Helpers/Dtos/FileBrowseOutcomeDto.cs
+/VSIXProject1/Helpers/CommonConstants.cs
+/VSIXProject1/Helpers/BrowseFileHelper.cs
+/VSIXProject1/Helpers/ArtefactsHelper.cs

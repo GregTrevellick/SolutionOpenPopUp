@@ -1,33 +1,37 @@
 ﻿using EnvDTE;
+using Microsoft;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using SolutionOpenPopUp.Helpers;
 using SolutionOpenPopUp.Helpers.Dtos;
 using SolutionOpenPopUp.Options;
+using SolutionOpenPopUp.Rating;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using SolutionOpenPopUp.Rating;
-using VsixRatingChaser.Interfaces;
 using System.Threading;
+using VsixRatingChaser.Interfaces;
 using System.Threading.Tasks;
-using Microsoft;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell.Events;
+using Task = System.Threading.Tasks.Task;
 
 namespace SolutionOpenPopUp
 {
     [ProvideOptionPage(typeof(GeneralOptions), Vsix.Name, "General", 0, 0, true)]
-    //[ProvideAutoLoad(UIContextGuids80.SolutionExists)]
+    //[ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionOpening_string, PackageAutoLoadFlags.BackgroundLoad)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration(productName: "#110", productDetails: "#112", productId: Vsix.Version, IconResourceID = 400)]
     [Guid("65dcb9bb-a90a-458b-9a89-a12fe85b9077")]
     public sealed class VSPackage : AsyncPackage
     {
-#pragma warning disable S1075 // URIs should not be hardcoded
+//#pragma warning disable S1075 // URIs should not be hardcoded
         private const string marketplaceUrl = "https://goo.gl/aGVjJ8";
-#pragma warning restore S1075 // URIs should not be hardcoded
+//#pragma warning restore S1075 // URIs should not be hardcoded
         private DTE dte;
         public static GeneralOptions Options { get; private set; }
         private string popUpFooter;
@@ -40,23 +44,57 @@ namespace SolutionOpenPopUp
         {
         }
 
-        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+//        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+//        {
+//            await JoinableTaskFactory.SwitchToMainThreadAsync();
+
+//            IServiceContainer serviceContainer = this as IServiceContainer;
+//            dte = serviceContainer.GetService(typeof(SDTE)) as DTE;
+//            Assumes.Present(dte);
+//             var solutionEvents = dte.Events.SolutionEvents;
+//            solutionEvents.Opened += OnSolutionOpened;
+//#pragma warning disable S125 // Sections of code should not be commented out
+//                            //bool a = dte.Solution.IsOpen();
+//        }
+//#pragma warning restore S125 // Sections of code should not be commented out
+
+        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            // runs in the background thread and doesn't affect the responsiveness of the UI thread.
+            //await Task.Delay(5000);
+
+            bool isSolutionLoaded = await IsSolutionLoadedAsync();
+
+            if (isSolutionLoaded)
+            {
+                HandleOpenSolution();
+            }
+
+            // Listen for subsequent solution events
+            Microsoft.VisualStudio.Shell.Events.SolutionEvents.OnAfterOpenSolution += HandleOpenSolution;
+        }
+
+        private async Task<bool> IsSolutionLoadedAsync()
+        {
+            // Since this package might not be initialized until after a solution has finished loading, we need to check if a solution has already been loaded and then handle it.
             await JoinableTaskFactory.SwitchToMainThreadAsync();
+            var solService = await GetServiceAsync(typeof(SVsSolution)) as IVsSolution;
+
+            ErrorHandler.ThrowOnFailure(solService.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpen, out object value));
+
+            return value is bool isSolOpen && isSolOpen;
+        }
+
+        private void HandleOpenSolution(object sender = null, EventArgs e = null)
+        {
+            ///////////////////////ThreadHelper.ThrowIfNotOnUIThread();
+
+
 
             IServiceContainer serviceContainer = this as IServiceContainer;
             dte = serviceContainer.GetService(typeof(SDTE)) as DTE;
-            Assumes.Present(dte);
-            var solutionEvents = dte.Events.SolutionEvents;
-            solutionEvents.Opened += OnSolutionOpened;
-#pragma warning disable S125 // Sections of code should not be commented out
-                            //bool a = dte.Solution.IsOpen();
-        }
-#pragma warning restore S125 // Sections of code should not be commented out
 
-        private void OnSolutionOpened()
-        {
-            ThreadHelper.ThrowIfNotOnUIThread();
+
 
             popUpBodyIsPopulated = false;
             popUpFooter = string.Empty;
@@ -80,7 +118,7 @@ namespace SolutionOpenPopUp
 
         private void ReadMeDotTxtHandler()
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            //ThreadHelper.ThrowIfNotOnUIThread();
 
             if (GeneralOptionsDto.ShowReadMeDotTxt)
             {
@@ -91,7 +129,7 @@ namespace SolutionOpenPopUp
 
         private void SolutionOpenPopUpDotTxtHandler()
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            //ThreadHelper.ThrowIfNotOnUIThread();
 
             if (GeneralOptionsDto.ShowSolutionOpenPopUpDotTxt)
             {
@@ -102,7 +140,7 @@ namespace SolutionOpenPopUp
 
         private string GetPopUpBody(IEnumerable<TextFileDto> textFileDtos)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            //ThreadHelper.ThrowIfNotOnUIThread();
 
             var popUpBody = string.Empty;
 
@@ -116,9 +154,7 @@ namespace SolutionOpenPopUp
 
             foreach (var textFileDto in textFileDtos)
             {
-#pragma warning disable S1643 // Strings should not be concatenated using '+' in a loop
                 popUpBody += GetPopUpMessage(textFileDto);
-#pragma warning restore S1643 // Strings should not be concatenated using '+' in a loop
             }
 
             return popUpBody;
@@ -126,7 +162,7 @@ namespace SolutionOpenPopUp
     
         private void ReadAllLines(TextFileDto textFileDto)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            //ThreadHelper.ThrowIfNotOnUIThread();
 
             if (!string.IsNullOrEmpty(textFileDto.FileName))
             {
@@ -205,7 +241,7 @@ namespace SolutionOpenPopUp
 
         private void DisplayPopUpMessage(string popUpTitle, string popUpBody)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            //ThreadHelper.ThrowIfNotOnUIThread();
             ChaseRating();
 
             if (!string.IsNullOrEmpty(popUpBody))
@@ -249,7 +285,7 @@ namespace SolutionOpenPopUp
         {
             get
             {
-                ThreadHelper.ThrowIfNotOnUIThread();
+                //ThreadHelper.ThrowIfNotOnUIThread();
 
                 if (string.IsNullOrEmpty(solutionFolder))
                 {
