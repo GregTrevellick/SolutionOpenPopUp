@@ -189,7 +189,6 @@
     <Content Include="Resources\VsixExtensionPreview_175x175.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Resources\VSPackage.ico" />
     <Content Include="source.extension.ico">
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Content>

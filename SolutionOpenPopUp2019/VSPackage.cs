@@ -13,14 +13,11 @@ namespace SolutionOpenPopUp
     [Guid("61eadc52-5677-4548-b273-08f1e6574f71")]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("Solution Load Sample", "Demonstrates use of solution load events", "1.0")]
-    // The following line will schedule the package to be initialized when a solution is being opened
     [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionOpening_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class VSPackage : AsyncPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            // Since this package might not be initialized until after a solution has finished loading,
-            // we need to check if a solution has already been loaded and then handle it.
             bool isSolutionLoaded = await IsSolutionLoadedAsync();
 
             if (isSolutionLoaded)
@@ -28,7 +25,6 @@ namespace SolutionOpenPopUp
                 HandleOpenSolution();
             }
 
-            // Listen for subsequent solution events
             SolutionEvents.OnAfterOpenSolution += HandleOpenSolution;
         }
 
@@ -44,8 +40,7 @@ namespace SolutionOpenPopUp
 
         private void HandleOpenSolution(object sender = null, EventArgs e = null)
         {
-            // Handle the open solution and try to do as much work
-            // on a background thread as possible
+            // Handle the open solution and try to do as much work on a background thread as possible
         }
     }
 }
