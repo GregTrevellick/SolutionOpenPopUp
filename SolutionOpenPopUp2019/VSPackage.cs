@@ -38,7 +38,7 @@ namespace SolutionOpenPopUp
 
             if (isSolutionLoaded)
             {
-                HandleOpenSolution();
+                await HandleOpenSolutionAsync();
             }
 
             SolutionEvents.OnAfterOpenSolution += HandleOpenSolution;
