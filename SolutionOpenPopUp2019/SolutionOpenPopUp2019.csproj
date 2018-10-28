@@ -175,6 +175,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\LICENSE.txt">
+      <Link>LICENSE.txt</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\ReadMeScreenShot_OptionsGeneral.png" />
     <Content Include="Resources\ReadMeScreenShot_PopUpBasic.png" />
     <Content Include="Resources\ReadMeScreenShot_PopUpSolutionOpen.png" />
