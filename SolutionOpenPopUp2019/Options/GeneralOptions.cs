@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.Shell;
+﻿//using Microsoft.VisualStudio.Shell;
 using SolutionOpenPopUp.Helpers;
 using System.ComponentModel;
 
 namespace SolutionOpenPopUp.Options
 {
-    public class GeneralOptions : DialogPage
+    public class GeneralOptions : BaseOptionModel<GeneralOptions> //: DialogPage
     {
         [Category(CommonConstants.CategorySubLevel)]
         [DisplayName("Show " + CommonConstants.ReadMeDotTxt + " (from solution root) when opening solution")]
