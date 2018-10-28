@@ -1,4 +1,6 @@
-﻿using SolutionOpenPopUp.Helpers;
+﻿using EnvDTE;
+using EnvDTE80;
+using SolutionOpenPopUp.Helpers;
 using SolutionOpenPopUp.Helpers.Dtos;
 using SolutionOpenPopUp.Options;
 using System;
@@ -8,11 +10,13 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Events;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
+using SolutionEvents = Microsoft.VisualStudio.Shell.Events.SolutionEvents;
 
 namespace SolutionOpenPopUp
 {
@@ -56,18 +60,23 @@ namespace SolutionOpenPopUp
 
         private void HandleOpenSolution(object sender = null, EventArgs e = null)
         {
+            Task.Run(async () => await HandleOpenSolutionAsync());
+        }
+
+        private async Task HandleOpenSolutionAsync(object sender = null, EventArgs e = null)
+        {
             // Handle the open solution and try to do as much work on a background thread as possible
 
             popUpBodyIsPopulated = false;
             popUpFooter = string.Empty;
             textFileDtos = new List<TextFileDto>();
 
-            var generalOptionsDto = GetGeneralOptionsDto();
+            var generalOptionsDto = await GetGeneralOptionsDtoAsync();//GetGeneralOptionsDto();
 
             SolutionOpenPopUpDotTxtHandler(generalOptionsDto);
             ReadMeDotTxtHandler(generalOptionsDto);
 
-            var popUpBody = GetPopUpBody(textFileDtos, generalOptionsDto);
+            var popUpBody = await GetPopUpBodyAsync(textFileDtos, generalOptionsDto);
 
             if (popUpBodyIsPopulated)
             {
@@ -76,7 +85,7 @@ namespace SolutionOpenPopUp
                     popUpBody += GetPopUpFooter();
                 }
 
-                DisplayPopUpMessage(string.Empty, popUpBody);
+                await DisplayPopUpMessageAsync(string.Empty, popUpBody);
             }
         }
 
@@ -98,13 +107,13 @@ namespace SolutionOpenPopUp
             }
         }
 
-        private string GetPopUpBody(IEnumerable<TextFileDto> textFileDtos, GeneralOptionsDto generalOptionsDto)
+        private async Task<string> GetPopUpBodyAsync(IEnumerable<TextFileDto> textFileDtos, GeneralOptionsDto generalOptionsDto)
         {
             var popUpBody = string.Empty;
 
             foreach (var textFileDto in textFileDtos)
             {
-                ReadAllLines(textFileDto);
+                await ReadAllLinesAsync(textFileDto);
                 textFileDto.AllLines = PackageHelper.GetTruncatedIndividualLines(textFileDto.AllLines, generalOptionsDto.LineLengthTruncationLimit);
             }
 
@@ -118,7 +127,7 @@ namespace SolutionOpenPopUp
             return popUpBody;
         }
 
-        private void ReadAllLines(TextFileDto textFileDto)
+        private async Task ReadAllLinesAsync(TextFileDto textFileDto)
         {
             if (!string.IsNullOrEmpty(textFileDto.FileName))
             {
@@ -126,7 +135,9 @@ namespace SolutionOpenPopUp
                 {
                     textFileDto.FileExists = true;
                     textFileDto.AllLines = File.ReadAllLines(textFileDto.FileName);
-                    textFileDto.SourceControlStatus = true;//TODO gregt // dte.SourceControl.IsItemUnderSCC(textFileDto.FileName);
+                    var dte = await GetServiceAsync(typeof(DTE)) as DTE2;
+                    Assumes.Present(dte);
+                    textFileDto.SourceControlStatus = dte.SourceControl.IsItemUnderSCC(textFileDto.FileName);
                 }
                 else
                 {
@@ -199,11 +210,11 @@ namespace SolutionOpenPopUp
             return result;
         }
 
-        private GeneralOptionsDto GetGeneralOptionsDto()
-        {
-            Task<GeneralOptionsDto> task = Task.Run<GeneralOptionsDto>(async () => await GetGeneralOptionsDtoAsync());
-            return task.Result;
-        }
+        //private GeneralOptionsDto GetGeneralOptionsDto()
+        //{
+        //    Task<GeneralOptionsDto> task = Task.Run<GeneralOptionsDto>(async () => await GetGeneralOptionsDtoAsync());
+        //    return task.Result;
+        //}
 
         private async Task<GeneralOptionsDto> GetGeneralOptionsDtoAsync()
         {
@@ -223,7 +234,7 @@ namespace SolutionOpenPopUp
             };
         }
 
-        private async Task DisplayPopUpMessage(string popUpTitle, string popUpBody)
+        private async Task DisplayPopUpMessageAsync(string popUpTitle, string popUpBody)
         {
             if (!string.IsNullOrEmpty(popUpBody))
             {
