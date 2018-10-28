@@ -68,7 +68,7 @@ namespace SolutionOpenPopUp
             popUpFooter = string.Empty;
             textFileDtos = new List<TextFileDto>();
 
-            var generalOptionsDto = await GetGeneralOptionsDtoAsync();//GetGeneralOptionsDto();
+            var generalOptionsDto = await GetGeneralOptionsDtoAsync();
 
             SolutionOpenPopUpDotTxtHandler(generalOptionsDto);
             ReadMeDotTxtHandler(generalOptionsDto);
