@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 using Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Events;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 using SolutionEvents = Microsoft.VisualStudio.Shell.Events.SolutionEvents;
@@ -27,11 +26,11 @@ namespace SolutionOpenPopUp
     [ProvideOptionPage(typeof(DialogPageProvider.General), Vsix.Name, "General", 0, 0, true)]
     public sealed class VSPackage : AsyncPackage
     {
-        private string popUpFooter;
         private string bulletPoint = " - ";
+        private bool popUpBodyIsPopulated;
+        private string popUpFooter;
         private string solutionFolder;
         private List<TextFileDto> textFileDtos;
-        private bool popUpBodyIsPopulated;
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
@@ -48,10 +47,9 @@ namespace SolutionOpenPopUp
         private async Task<bool> IsSolutionLoadedAsync()
         {
             await JoinableTaskFactory.SwitchToMainThreadAsync();
+
             var solService = await GetServiceAsync(typeof(SVsSolution)) as IVsSolution;
-
             ErrorHandler.ThrowOnFailure(solService.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpen, out object value));
-
             ErrorHandler.ThrowOnFailure(solService.GetProperty((int)__VSPROPID.VSPROPID_SolutionDirectory, out object solutionDirectoryObject));
             solutionFolder = (string)solutionDirectoryObject;
 
@@ -66,7 +64,6 @@ namespace SolutionOpenPopUp
         private async Task HandleOpenSolutionAsync(object sender = null, EventArgs e = null)
         {
             // Handle the open solution and try to do as much work on a background thread as possible
-
             popUpBodyIsPopulated = false;
             popUpFooter = string.Empty;
             textFileDtos = new List<TextFileDto>();
