@@ -1,5 +1,9 @@
 ﻿using EnvDTE;
 using EnvDTE80;
+using Microsoft;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using SolutionOpenPopUp.Helpers;
 using SolutionOpenPopUp.Helpers.Dtos;
 using SolutionOpenPopUp.Options;
@@ -10,12 +14,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Task = System.Threading.Tasks.Task;
 using SolutionEvents = Microsoft.VisualStudio.Shell.Events.SolutionEvents;
+using Task = System.Threading.Tasks.Task;
 
 namespace SolutionOpenPopUp
 {
