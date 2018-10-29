@@ -235,6 +235,8 @@ namespace SolutionOpenPopUp
         {
             if (!string.IsNullOrEmpty(popUpBody))
             {
+                await JoinableTaskFactory.SwitchToMainThreadAsync();
+
                 IVsUIShell uiShell = await GetServiceAsync(typeof(SVsUIShell)) as IVsUIShell;
                 Guid clsid = Guid.Empty;
 
