@@ -50,8 +50,6 @@ namespace SolutionOpenPopUp
 
             var solService = await GetServiceAsync(typeof(SVsSolution)) as IVsSolution;
             ErrorHandler.ThrowOnFailure(solService.GetProperty((int)__VSPROPID.VSPROPID_IsSolutionOpen, out object value));
-            ErrorHandler.ThrowOnFailure(solService.GetProperty((int)__VSPROPID.VSPROPID_SolutionDirectory, out object solutionDirectoryObject));
-            solutionFolder = (string)solutionDirectoryObject;
 
             return value is bool isSolOpen && isSolOpen;
         }
@@ -70,6 +68,8 @@ namespace SolutionOpenPopUp
 
             var generalOptionsDto = await GetGeneralOptionsDtoAsync();
 
+            await SetSolutionFolderAsync();
+
             SolutionOpenPopUpDotTxtHandler(generalOptionsDto);
             ReadMeDotTxtHandler(generalOptionsDto);
 
@@ -84,6 +84,16 @@ namespace SolutionOpenPopUp
 
                 await DisplayPopUpMessageAsync(string.Empty, popUpBody);
             }
+        }
+
+        private async Task SetSolutionFolderAsync()
+        {
+            await JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var solService = await GetServiceAsync(typeof(SVsSolution)) as IVsSolution;
+            ErrorHandler.ThrowOnFailure(solService.GetProperty((int)__VSPROPID.VSPROPID_SolutionDirectory, out object solutionDirectoryObject));
+
+            solutionFolder = (string)solutionDirectoryObject;
         }
 
         private void ReadMeDotTxtHandler(GeneralOptionsDto generalOptionsDto)
