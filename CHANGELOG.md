@@ -2,6 +2,10 @@
 
 These are the changes to each version that has been released on the official Visual Studio extension gallery.
 
+## 1.0.41
+**2018-10-30**
+- [x] Async (aka VS2019) support (like it should always have been!)
+
 ## 1.0.29
 **2018-01-xx**
 - [x] Minor enhancements
