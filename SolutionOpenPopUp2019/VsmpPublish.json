@@ -23,7 +23,9 @@
     }
   ],
   "categories": [
-    "Tools"
+    "documentation",
+    "setup and deployment",
+    "team development"
   ],
   "identity": {
     "internalName": "SolutionOpenPopUp"
