@@ -2,7 +2,7 @@
 
 These are the changes to each version that has been released on the official Visual Studio extension gallery.
 
-## 1.0.43
+## 1.0.45
 **2019-03-20**
 - [x] Fix issue #3
 
